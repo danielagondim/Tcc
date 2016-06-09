@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace TCC.CursosOnline.Dominio.Entidades
 {
-    public class Usuario
+    public class Video
     {
-        public int Id_usuario { get; set; }
+        public int Id_video { get; set; }
         public bool Ativo { get; set; }
-        public string CPF { get; set; }
         public string Nome { get; set; }
-        public string Telefone { get; set; }
-        public string Senha { get; set; }
-        public bool Administrador { get; set; }
+        public string Url { get; set; }
+        public int Id_Unidade { get; set; }
+        public int Ordem { get; set; }
+
+        public virtual Unidade Unidade { get; set; }
     }
 }
