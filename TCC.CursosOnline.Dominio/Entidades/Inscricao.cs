@@ -17,5 +17,9 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public decimal Nota_final { get; set; }
         public bool Certificado { get; set; }
 
+        public virtual Usuario Usuario { get; set; }
+        public virtual Curso Curso { get; set; }
+
+
     }
 }

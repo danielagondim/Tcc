@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace TCC.CursosOnline.Dominio.Entidades
 {
-    public class Atividade
-    {   
-        public int Id_atividade { get; set; }
+    public class Questao
+    {
+        public int Id_questao { get; set; }
         public bool Ativo { get; set; }
-        public string Titulo { get; set; }
-        public int Id_unidade { get; set; }
+        public string Enunciado { get; set; }
+        public int Id_atividade { get; set; }
         public int Ordem { get; set; }
 
-        public virtual Unidade Unidade { get; set; }
+        public virtual Atividade Atividade { get; set; }
     }
 }
