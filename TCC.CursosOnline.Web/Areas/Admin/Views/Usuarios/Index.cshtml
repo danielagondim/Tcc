@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Usuario>
+@{
+    ViewBag.Title = "ListaUsuarios";
+    
+}
+
+<h2>Lista Usuários</h2>
+<table>
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            Nome
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            Administrador
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrador)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit") |
+                @Html.ActionLink("Detalhes", "Details") |
+                @Html.ActionLink("Deletar", "Delete")
+            </td>
+        </tr>
+    }
+
+    @Html.ActionLink("Novo", "CadastroUsuario", "Usuarios")
+
+</table>
+
+
+
