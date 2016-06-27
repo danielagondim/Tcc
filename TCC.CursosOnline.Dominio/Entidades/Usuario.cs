@@ -11,10 +11,12 @@ namespace TCC.CursosOnline.Dominio.Entidades
     {
         [Key]
         public int Id_usuario { get; set; }
+
         public bool Ativo { get; set; }
         public string CPF { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
+        [DataType(DataType.Password)]
         public string Senha { get; set; }
         public bool Administrador { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Usuario>
+﻿@model List<TCC.CursosOnline.Dominio.Entidades.Usuario>
 @{
     ViewBag.Title = "ListaUsuarios";
     
@@ -9,6 +9,9 @@
     <tr>
         <th>
             Id
+        </th>
+        <th>
+            Ativo
         </th>
         <th>
             CPF
@@ -31,6 +34,9 @@
                 @Html.DisplayFor(modelItem => item.Id_usuario)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
@@ -43,9 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Administrador)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit") |
-                @Html.ActionLink("Detalhes", "Details") |
-                @Html.ActionLink("Deletar", "Delete")
+                @Html.ActionLink("Editar", "EditarUsuario", new { id = item.Id_usuario }, null) |
+                @Html.ActionLink("Desativar", "DesativarUsuario", new { id = item.Id_usuario }, null)
             </td>
         </tr>
     }

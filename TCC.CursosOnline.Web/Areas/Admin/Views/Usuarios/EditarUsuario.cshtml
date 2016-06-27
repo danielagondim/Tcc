@@ -1,12 +1,12 @@
 ﻿@model TCC.CursosOnline.Dominio.Entidades.Usuario
 
 @{
-    ViewBag.Title = "CadastroUsuario";
+    ViewBag.Title = "EditarUsuario";
 }
 
-<h2>CadastroUsuario</h2>
+<h2>Editar Usuario</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -14,15 +14,7 @@
         <h4>Usuario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Ativo)
-                    @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.Id_usuario)
 
         <div class="form-group">
             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -68,7 +60,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Alterar" class="btn btn-default" />
             </div>
         </div>
     </div>
