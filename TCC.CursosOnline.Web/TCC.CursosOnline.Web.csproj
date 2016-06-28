@@ -136,6 +136,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\Usuarios\CadastroUsuario.cshtml" />
     <Content Include="Areas\Admin\Views\Usuarios\EditarUsuario.cshtml" />
+    <Content Include="Areas\Admin\Views\Cursos\Index.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -145,6 +146,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
