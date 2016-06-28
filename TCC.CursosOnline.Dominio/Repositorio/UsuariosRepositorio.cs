@@ -37,6 +37,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                 if (UsuarioBanco != null)
                 {
                     //Alterar
+                    UsuarioBanco.Ativo = Usuario.Ativo;
                     UsuarioBanco.Administrador = Usuario.Administrador;                  
                     UsuarioBanco.CPF = Usuario.CPF;
                     UsuarioBanco.Nome = Usuario.Nome;

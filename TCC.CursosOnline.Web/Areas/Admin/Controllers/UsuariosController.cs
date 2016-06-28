@@ -53,21 +53,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DesativarUsuario(Int32 Id)
-        {
-            _repositorio = new UsuariosRepositorio();
-            Usuario Usuario = _repositorio.Desativar(Id);
-
-            if (Usuario != null)
-            {
-                TempData["mensagem"] = "Usuário desativado com sucesso!";
-            }
-
-            return RedirectToAction("Index");
-        }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarUsuario(Usuario Usuario)
@@ -85,7 +71,19 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
             return View(Usuario);
         }
 
-       
+        [HttpPost]
+        public ActionResult Desativar(int Id)
+        {
+            _repositorio = new UsuariosRepositorio();
+            Usuario Usuario = _repositorio.Desativar(Id);
+
+            if (Usuario != null)
+            {
+                TempData["mensagem"] = "Usuário desativado com sucesso!";
+            }
+
+            return RedirectToAction("Index");
+        }
 
 
     }

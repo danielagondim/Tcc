@@ -1,63 +1,81 @@
 ﻿@model List<TCC.CursosOnline.Dominio.Entidades.Usuario>
 @{
-    ViewBag.Title = "ListaUsuarios";
+    ViewBag.Title = "Administrativo - Usuarios";
     
 }
 
 <h2>Lista Usuários</h2>
-<table>
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Ativo
-        </th>
-        <th>
-            CPF
-        </th>
-        <th>
-            Nome
-        </th>
-        <th>
-            Telefone
-        </th>
-        <th>
-            Administrador
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+@Html.ActionLink("Novo Usuário", "CadastroUsuario", "Usuarios", new { @class = "btn btn-default" })
+<table class="table table-striped table-condensed table-bordered">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_usuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Administrador)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "EditarUsuario", new { id = item.Id_usuario }, null) |
-                @Html.ActionLink("Desativar", "DesativarUsuario", new { id = item.Id_usuario }, null)
-            </td>
+            <th>
+                Id
+            </th>
+            <th>
+                Ativo
+            </th>
+            <th>
+                CPF
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Telefone
+            </th>
+            <th>
+                Administrador
+            </th>
+            <th>
+                Editar
+            </th>
+            <th>
+                Desativar
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
 
-    @Html.ActionLink("Novo", "CadastroUsuario", "Usuarios")
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Administrador)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarUsuario", new { id = item.Id_usuario }, new { @class = "btn btn-default" }) 
+                </td>
+                <td>
+                    @using(Html.BeginForm("Desativar", "Usuarios"))
+                    {
+                        @Html.Hidden("Id", item.Id_usuario)
+                        <input type="submit" class="btn btn-danger" value="Desativar"/>
+                    }
+                </td>
+            </tr>
+
+        }
+    </tbody>
 
 </table>
+
+
 
 
 
