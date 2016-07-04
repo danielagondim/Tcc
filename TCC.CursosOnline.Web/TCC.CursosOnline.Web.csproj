@@ -137,6 +137,11 @@
     <Content Include="Areas\Admin\Views\Usuarios\CadastroUsuario.cshtml" />
     <Content Include="Areas\Admin\Views\Usuarios\EditarUsuario.cshtml" />
     <Content Include="Areas\Admin\Views\Cursos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Cursos\CadastroCurso.cshtml" />
+    <Content Include="Areas\Admin\Views\Cursos\EditarCurso.cshtml" />
+    <Content Include="Areas\Admin\Views\Unidades\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Unidades\CadastroUnidade.cshtml" />
+    <Content Include="Areas\Admin\Views\Unidades\EditarUnidade.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -147,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UnidadesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

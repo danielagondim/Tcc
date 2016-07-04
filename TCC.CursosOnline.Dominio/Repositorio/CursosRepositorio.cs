@@ -16,7 +16,12 @@ namespace TCC.CursosOnline.Dominio.Repositorio
             return _context.Cursos.ToList();
         }
 
-        public Curso ListaCursoPorId(Int32 Id)
+        public List<Curso> ListaCursoPorId(int Id)
+        {
+            return _context.Cursos.Where(p => p.Id_curso.Equals(Id)).ToList();
+        }
+
+        public Curso RetornaCursoPorId(Int32 Id)
         {
 
             return _context.Cursos.FirstOrDefault(p => p.Id_curso == Id);
