@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Material>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Material Complementar</h2>
+<hr />
+<h3>Curso: @ViewData["nome_curso"]</h3>
+<br />
+
+<p>
+    @Html.ActionLink("Novo Material ", "CadastroMaterial", "Materiais", new { id_curso = @ViewData["id_curso"] }, new { @class = "btn btn-default" })           
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arquivo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Arquivo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_materiais }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_materiais }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_materiais })
+        </td>
+    </tr>
+}
+
+</table>

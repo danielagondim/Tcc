@@ -44,7 +44,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -85,6 +87,7 @@
     <Compile Include="Entidades\Forum_topico.cs" />
     <Compile Include="Entidades\Inscricao.cs" />
     <Compile Include="Entidades\Material.cs" />
+    <Compile Include="Entidades\MaterialModelView.cs" />
     <Compile Include="Entidades\Opcao.cs" />
     <Compile Include="Entidades\Questao.cs" />
     <Compile Include="Entidades\Resposta.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Repositorio\CategoriasRepositorio.cs" />
     <Compile Include="Repositorio\CursosRepositorio.cs" />
     <Compile Include="Repositorio\EfDbContext.cs" />
+    <Compile Include="Repositorio\MateriaisRepositorio.cs" />
     <Compile Include="Repositorio\UnidadesRepositorio.cs" />
     <Compile Include="Repositorio\UsuariosRepositorio.cs" />
   </ItemGroup>
