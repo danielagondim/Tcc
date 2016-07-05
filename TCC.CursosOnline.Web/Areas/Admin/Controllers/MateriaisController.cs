@@ -41,18 +41,30 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CadastroMaterial(Material Material)
+        public ActionResult CadastroMaterial(MaterialModelView Material)
         {
             if (ModelState.IsValid)
             {
                 _repositorio = new MateriaisRepositorio();
-                _repositorio.Salvar(Material);
+                Material mat = new Material();
+                mat.Ativo = Material.Ativo;
+                mat.Id_curso = Material.Id_curso;
+                mat.Arquivo = _repositorio.Upload(Material.ArquivoFile);
+                mat.Nome = Material.Nome;
+                if (mat.Arquivo != null)
+                {
+                    _repositorio.Salvar(mat);
 
-                TempData["mensagem"] = "Material cadastrado com sucesso!";
+                    TempData["mensagem"] = "Material cadastrado com sucesso!";
 
-                return RedirectToAction("Index", new { id_curso = Material.Id_curso });
+                    return RedirectToAction("Index", new { id_curso = Material.Id_curso });
+                }              
+                
             }
-
+            _repositorio_curso = new CursosRepositorio();
+            var cursos = _repositorio_curso.ListaCursoPorId(Material.Id_curso);
+            ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
+            ViewData["Id_curso"] = Material.Id_curso;
             return View(Material);
         }
     }

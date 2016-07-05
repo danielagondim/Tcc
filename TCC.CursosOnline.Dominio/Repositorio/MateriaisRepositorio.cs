@@ -34,13 +34,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
         {
             if (Material.Id_materiais == 0)
             {
-                //Salvar
-                //Material.Arquivo = Upload(Material.ArquivoFile);
-                if (Material.Arquivo != null)
-                {
-                    _context.Materiais.Add(Material);
-                }
-
+                _context.Materiais.Add(Material);
 
             }
             else
