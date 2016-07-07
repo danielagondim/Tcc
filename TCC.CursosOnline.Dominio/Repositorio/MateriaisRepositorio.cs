@@ -24,9 +24,9 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         }
 
-        public Unidade RetornaUnidadePorId(int id_unidade)
+        public Material RetornaMaterialPorId(int id_material)
         {
-            return _context.Unidades.FirstOrDefault(p => p.Id_unidade == id_unidade);
+            return _context.Materiais.FirstOrDefault(p => p.Id_materiais == id_material);
         }
 
         //Salvar ou Alterar um Material Complementar
@@ -46,6 +46,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                     MaterialBanco.Ativo = Material.Ativo;
                     MaterialBanco.Id_curso = Material.Id_curso;
                     MaterialBanco.Nome = Material.Nome;
+                    MaterialBanco.Arquivo = Material.Arquivo;
                 }
             }
 

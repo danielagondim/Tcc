@@ -4,11 +4,11 @@
     ViewBag.Title = "Cursos";
 }
 
-<h2>Cadastro de Cursos</h2>
-
+<h2>Cursos</h2>
+<hr />
 <p>
 
-    @Html.ActionLink("Novo Curso", "CadastroCurso", "Cursos", new { @class = "btn btn-default" })
+    @Html.ActionLink("Novo Curso", "CadastroCurso", "Cursos", new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -46,14 +46,14 @@
         </td>
        
         <td>
-            @Html.ActionLink("Editar", "EditarCurso", new { id = item.Id_curso }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Editar", "EditarCurso", new { id = item.Id_curso }, new { @class = "btn btn-primary" })
          
         </td>
         <td>
-           @Html.ActionLink("Unidades", "Index", "Unidades", new { id_curso = item.Id_curso }, new { @class = "btn btn-default" })       
+           @Html.ActionLink("Unidades", "Index", "Unidades", new { id_curso = item.Id_curso }, new { @class = "btn btn-danger" })       
         </td>
         <td>
-            @Html.ActionLink("Material Complementar", "Index", "Materiais", new { id_curso = item.Id_curso }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Material Complementar", "Index", "Materiais", new { id_curso = item.Id_curso }, new { @class = "btn btn-warning" })
         </td>
     </tr>
 }

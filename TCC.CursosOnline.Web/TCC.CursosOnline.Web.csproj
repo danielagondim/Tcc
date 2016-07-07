@@ -144,6 +144,7 @@
     <Content Include="Areas\Admin\Views\Unidades\EditarUnidade.cshtml" />
     <Content Include="Areas\Admin\Views\Materiais\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Materiais\CadastroMaterial.cshtml" />
+    <Content Include="Areas\Admin\Views\Materiais\EditarMaterial.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />

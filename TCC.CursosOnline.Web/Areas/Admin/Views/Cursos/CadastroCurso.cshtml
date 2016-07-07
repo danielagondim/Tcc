@@ -1,17 +1,17 @@
 ﻿@model TCC.CursosOnline.Dominio.Entidades.Curso
 
 @{
-    ViewBag.Title = "CadastroCurso";
+    ViewBag.Title = "Cadastro de Cursos";
 }
 
-<h2>CadastroCurso</h2>
+<h2>Cadastrar Curso</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Curso</h4>
+      
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -42,12 +42,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index", new { id_curso = @ViewData["id_curso"] }, new { @class = "btn btn-default" })
+    
 </div>

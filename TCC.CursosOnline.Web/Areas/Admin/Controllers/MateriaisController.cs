@@ -13,7 +13,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
         private MateriaisRepositorio _repositorio;
         private CursosRepositorio _repositorio_curso;
 
-       
+
         public ActionResult Index(int id_curso)
         {
             _repositorio = new MateriaisRepositorio();
@@ -26,7 +26,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
             ViewData["Nome_curso"] = nome_curso;
 
             return View(materiais);
-          
+
         }
 
         public ActionResult CadastroMaterial(int id_curso)
@@ -58,13 +58,71 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
                     TempData["mensagem"] = "Material cadastrado com sucesso!";
 
                     return RedirectToAction("Index", new { id_curso = Material.Id_curso });
-                }              
-                
+                }
+
             }
             _repositorio_curso = new CursosRepositorio();
             var cursos = _repositorio_curso.ListaCursoPorId(Material.Id_curso);
             ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
             ViewData["Id_curso"] = Material.Id_curso;
+            return View(Material);
+        }
+
+        public ViewResult EditarMaterial(Int32 id)
+        {
+            _repositorio = new MateriaisRepositorio();
+            Material material = _repositorio.RetornaMaterialPorId(id);
+            MaterialModelView mat = new MaterialModelView();
+
+            mat.Id = material.Id_materiais;
+            mat.Ativo = material.Ativo;
+            mat.Id_curso = material.Id_curso;
+            mat.Nome = material.Nome;
+            mat.Arquivo = material.Arquivo;
+
+            _repositorio_curso = new CursosRepositorio();
+            var cursos = _repositorio_curso.ListaCursoPorId(material.Id_curso);
+            ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
+            ViewData["Id_curso"] = material.Id_curso;
+
+            return View(mat);
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarMaterial(MaterialModelView Material)
+        {
+            if (ModelState.IsValid)
+            {
+                _repositorio = new MateriaisRepositorio();
+                Material mat = new Material();
+                mat.Id_materiais = Material.Id;
+                mat.Ativo = Material.Ativo;
+                mat.Id_curso = Material.Id_curso;
+                mat.Nome = Material.Nome;
+                if (Material.ArquivoFile != null && Material.ArquivoFile.ContentLength > 0)
+                {
+                    mat.Arquivo = _repositorio.Upload(Material.ArquivoFile);
+
+                }
+                else
+                {
+                    mat.Arquivo = Material.Arquivo;
+                }
+
+                if (mat.Arquivo != null)
+                {
+
+                    _repositorio.Salvar(mat);
+
+                    TempData["mensagem"] = "MAterial alterado com sucesso!";
+
+                    return RedirectToAction("Index", new { id_curso = Material.Id_curso });
+                }
+            }
+
             return View(Material);
         }
     }
