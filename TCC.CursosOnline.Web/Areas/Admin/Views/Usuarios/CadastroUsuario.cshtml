@@ -4,14 +4,14 @@
     ViewBag.Title = "CadastroUsuario";
 }
 
-<h2>CadastroUsuario</h2>
+<h2>Cadastrar Usuario</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Usuario</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -68,12 +68,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+   @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
 </div>

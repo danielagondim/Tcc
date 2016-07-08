@@ -53,6 +53,11 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index", new { id_curso = Unidade.Id_curso });
             }
 
+            _repositorio_curso = new CursosRepositorio();
+            var cursos = _repositorio_curso.ListaCursoPorId(Unidade.Id_curso);
+            ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
+            ViewData["Id_curso"] = Unidade.Id_curso;
+
             return View(Unidade);
         }
 
@@ -83,6 +88,11 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 
                 return RedirectToAction("Index", new { id_curso = Unidade.Id_curso });
             }
+
+            _repositorio_curso = new CursosRepositorio();
+            var cursos = _repositorio_curso.ListaCursoPorId(Unidade.Id_curso);
+            ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
+            ViewData["Id_curso"] = Unidade.Id_curso;
 
             return View(Unidade);
         }

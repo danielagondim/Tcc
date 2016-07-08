@@ -17,8 +17,12 @@ namespace TCC.CursosOnline.Dominio.Repositorio
             var unidades = _context.Unidades.Where(p => p.Id_curso.Equals(id_curso)).ToList();
 
             return unidades;
-                         
-                
+               
+        }
+
+        public List<Unidade> ListaUnidadePorId(int Id)
+        {
+            return _context.Unidades.Where(p => p.Id_unidade.Equals(Id)).ToList();
         }
 
         public Unidade RetornaUnidadePorId(int id_unidade)

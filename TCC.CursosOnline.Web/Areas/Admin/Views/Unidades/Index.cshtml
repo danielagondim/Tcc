@@ -46,14 +46,14 @@
            @Html.ActionLink("Editar", "EditarUnidade", new { id = item.Id_unidade }, new { @class = "btn btn-primary" }) 
         </td>
         <td>
-            @Html.ActionLink("Vídeos", "Index", "Videos", new { id_curso = item.Id_curso }, new { @class = "btn btn-danger" })       
+            @Html.ActionLink("Vídeos", "Index", "Videos", new { id_unidade = item.Id_unidade}, new { @class = "btn btn-danger" })       
         </td>
         <td>
-            @Html.ActionLink("Atividades", "Index", "Atividades", new { id_curso = item.Id_curso }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Atividades", "Index", "Atividades", new { id_unidade = item.Id_unidade }, new { @class = "btn btn-warning" })
         </td>
     </tr>
 }
 
 </table>
 
-@Html.ActionLink("Voltar", "Index", "Cursos", null, new { @class = "btn btn-default" }) 
+@Html.ActionLink("Voltar", "Index", "Cursos", null, new { @class = "btn btn-info" }) 

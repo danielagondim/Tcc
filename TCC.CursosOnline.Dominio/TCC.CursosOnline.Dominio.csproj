@@ -100,6 +100,7 @@
     <Compile Include="Repositorio\CursosRepositorio.cs" />
     <Compile Include="Repositorio\EfDbContext.cs" />
     <Compile Include="Repositorio\MateriaisRepositorio.cs" />
+    <Compile Include="Repositorio\VideosRepositorio.cs" />
     <Compile Include="Repositorio\UnidadesRepositorio.cs" />
     <Compile Include="Repositorio\UsuariosRepositorio.cs" />
   </ItemGroup>

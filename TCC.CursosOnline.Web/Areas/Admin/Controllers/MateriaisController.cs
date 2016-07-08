@@ -123,6 +123,11 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
                 }
             }
 
+            _repositorio_curso = new CursosRepositorio();
+            var cursos = _repositorio_curso.ListaCursoPorId(Material.Id_curso);
+            ViewData["listaCurso"] = new SelectList(cursos, "Id_curso", "Titulo_curso");
+            ViewData["Id_curso"] = Material.Id_curso;
+
             return View(Material);
         }
     }

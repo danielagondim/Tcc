@@ -12,11 +12,17 @@ namespace TCC.CursosOnline.Dominio.Entidades
     {
         [Key]
         public int Id_materiais { get; set; }
+
+        [Display(Name = "Curso")]
         public int Id_curso { get; set; }
+
         public bool Ativo { get; set; }
+
+        [Required(ErrorMessage = "Digite o Nome do Material Complementar.")]
         public string Nome { get; set; }
+
         public string Arquivo { get; set; }
-        //public HttpPostedFileBase ArquivoFile { get; set; }
+       
 
         public virtual Curso Curso { get; set; }
     }
