@@ -148,6 +148,10 @@
     <Content Include="Areas\Admin\Views\Videos\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Videos\CadastroVideo.cshtml" />
     <Content Include="Areas\Admin\Views\Videos\EditarVideo.cshtml" />
+    <Content Include="Areas\Admin\Views\Categorias\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categorias\CadastroCategoria.cshtml" />
+    <Content Include="Areas\Admin\Views\Categorias\EditarCategoria.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -157,7 +161,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriasController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MateriaisController.cs" />
     <Compile Include="Areas\Admin\Controllers\UnidadesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />

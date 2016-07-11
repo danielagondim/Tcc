@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Categoria>
+
+@{
+    ViewBag.Title = "Categorias";
+}
+
+<h2>Categorias</h2>
+<hr />
+<p>
+    @Html.ActionLink("Nova Categoria", "CadastroCategoria", null, new { @class = "btn btn-success" })
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+           @Html.ActionLink("Editar", "EditarCAtegoria", new { id = item.Id_categoria }, new { @class = "btn btn-primary" }) 
+           
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.ActionLink("Voltar para Cursos", "Index", "Cursos", null, new { @class = "btn btn-info" }) 

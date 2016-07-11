@@ -25,7 +25,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
         public ActionResult CadastroCurso()
         {
             _repositorioCategoria = new CategoriasRepositorio();
-            var categorias = _repositorioCategoria.ListaTodasCategorias();
+            var categorias = _repositorioCategoria.ListaTodasCategoriasAtivas();
             ViewData["listaCategorias"] = new SelectList(categorias, "Id_categoria", "Descricao");
             return View();
 
