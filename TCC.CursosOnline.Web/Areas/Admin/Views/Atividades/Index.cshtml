@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Atividade>
+
+@{
+    ViewBag.Title = "Atividadess";
+}
+
+<h2>Atividades</h2>
+<hr />
+<h4><strong>Curso:</strong> @ViewData["nome_curso"]</h4>
+<h4><strong>Unidade:</strong> @ViewData["nome_unidade"]</h4>
+<br />
+
+<p>
+    @Html.ActionLink("Nova Atividade", "CadastroAtividade", "Atividades", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-success" }) 
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordem)
+        </th>
+        <th>Editar</th>
+        <th>Questões</th>
+        <th>Visualizar</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordem)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditarAtividade", new { id_atividade = item.Id_atividade}, new { @class = "btn btn-primary" }) 
+        </td>
+        <td>
+            @Html.ActionLink("Questões", "Index", "Questoes", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-danger" })
+        </td>
+        <td>
+            @Html.ActionLink("Visualizar", "Visualizar", "Atividades", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-warning" })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Voltar", "Index", "Unidades", new { id_curso = @ViewData["id_curso"] }, new { @class = "btn btn-info" })

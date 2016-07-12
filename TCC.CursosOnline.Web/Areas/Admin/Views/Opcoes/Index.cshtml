@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Opcao>
+
+@{
+    ViewBag.Title = "Opções";
+}
+
+<h2>Opções</h2>
+<hr />
+<h4><strong>Curso:</strong> @ViewData["nome_curso"]</h4>
+<h4><strong>Unidade:</strong> @ViewData["nome_unidade"]</h4>
+<h4><strong>Atividade:</strong> @ViewData["nome_atividade"]</h4>
+<h4><strong>Questão:</strong> @ViewData["nome_questao"]</h4>
+<br />
+
+<p>
+    @Html.ActionLink("Nova Opção", "CadastroOpcao", "Opcoes", new { id_questao = @ViewData["Id_questao"] }, new { @class = "btn btn-success" }) 
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correta)
+        </th>
+        <th>Editar</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correta)
+        </td>
+        <td>
+           @Html.ActionLink("Editar", "EditarOpcao", new { id_opcao = item.Id_opcao }, new { @class = "btn btn-primary" }) 
+           
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.ActionLink("Voltar", "Index", "Questoes", new { id_atividade = @ViewData["id_atividade"] }, new { @class = "btn btn-info" })

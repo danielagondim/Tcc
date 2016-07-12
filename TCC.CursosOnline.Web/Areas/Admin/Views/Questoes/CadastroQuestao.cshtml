@@ -1,17 +1,17 @@
-﻿@model TCC.CursosOnline.Dominio.Entidades.Video
+﻿@model TCC.CursosOnline.Dominio.Entidades.Questao
 
 @{
-    ViewBag.Title = "Cadastrar Video";
+    ViewBag.Title = "Cadastrar Questao";
 }
 
-<h2>Cadastrar Video</h2>
+<h2>Cadastrar Questao</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-     
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -23,30 +23,23 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Id_atividade, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                @Html.DropDownList("Id_atividade", ViewData["listaAtividades"] as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_atividade, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Enunciado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Enunciado, new { htmlAttributes = new { @class = "form-control", Type = "comment" } })
+                @Html.ValidationMessageFor(model => model.Enunciado, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Unidade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id_unidade", ViewData["listaUnidade"] as SelectList, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id_Unidade, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.Ordem, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -58,12 +51,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-success" />
+                <input type="submit" value="Salvar" class="btn btn-danger" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index", "Videos", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Voltar", "Index", "Questoes", new { id_atividade = @ViewData["id_atividade"] }, new { @class = "btn btn-info" })
 </div>
