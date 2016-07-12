@@ -1,0 +1,17 @@
+﻿@model TCC.CursosOnline.Dominio.Entidades.AtividadeViewModel
+
+
+@{
+    ViewBag.Title = "Visualizar Atividade";
+}
+
+ Atividade: @ViewData["Atividade"]
+
+
+
+@foreach (var qts in Model.ListaQuestoes)
+{
+        <span>@qts.Enunciado</span>
+}
+
+

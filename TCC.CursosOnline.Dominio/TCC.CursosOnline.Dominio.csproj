@@ -87,6 +87,7 @@
     <Compile Include="Entidades\Forum_topico.cs" />
     <Compile Include="Entidades\Inscricao.cs" />
     <Compile Include="Entidades\Material.cs" />
+    <Compile Include="Entidades\AtividadeModelView.cs" />
     <Compile Include="Entidades\MaterialModelView.cs" />
     <Compile Include="Entidades\Opcao.cs" />
     <Compile Include="Entidades\Questao.cs" />

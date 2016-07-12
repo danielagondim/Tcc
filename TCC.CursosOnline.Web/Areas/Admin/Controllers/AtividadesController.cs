@@ -13,6 +13,8 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
         private AtividadesRepositorio _repositorio;
         private UnidadesRepositorio _repositorio_unidade;
         private CursosRepositorio _repositorio_curso;
+        private QuestoesRepositorio _repositorio_questao;
+        private OpcoesRepositorio _repositorio_opcao;
 
 
         public ActionResult Index(int id_unidade)
@@ -101,6 +103,28 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
             ViewData["Id_unidade"] = Atividade.Id_unidade;
 
             return View(Atividade);
+        }
+
+        public ActionResult VisualizarAtividade(int id_atividade)
+        {
+            var atividadeVM = new AtividadeViewModel();
+            _repositorio = new AtividadesRepositorio();
+            _repositorio_questao = new QuestoesRepositorio();
+            _repositorio_opcao = new OpcoesRepositorio();
+
+            var atividade = _repositorio.RetornaAtividadesPorId(id_atividade);
+            atividadeVM.Nome_atividade = atividade.Titulo.ToString();
+            ViewData["Atividade"] = atividade.Titulo.ToString();
+
+            var questao = _repositorio_questao.ListaQuestoesPorAtividade(id_atividade);
+
+            //atividadeVM.ListaQuestoes = new List<Questao>();
+            atividadeVM.ListaQuestoes = questao;
+
+            return View(atividadeVM);
+            
+
+
         }
     }
 }

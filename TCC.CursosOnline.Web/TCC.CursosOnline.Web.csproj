@@ -127,6 +127,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -161,9 +163,11 @@
     <Content Include="Areas\Admin\Views\Opcoes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Opcoes\CadastroOpcao.cshtml" />
     <Content Include="Areas\Admin\Views\Opcoes\EditarOpcao.cshtml" />
+    <Content Include="Areas\Admin\Views\Atividades\VisualizarAtividade.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery-ui.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
