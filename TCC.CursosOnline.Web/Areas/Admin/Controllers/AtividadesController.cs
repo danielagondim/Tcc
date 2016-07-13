@@ -114,14 +114,15 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 
             var atividade = _repositorio.RetornaAtividadesPorId(id_atividade);
             atividadeVM.Nome_atividade = atividade.Titulo.ToString();
-            ViewData["Atividade"] = atividade.Titulo.ToString();
+            ViewData["id_unidade"] = atividade.Id_unidade;
 
-            var questao = _repositorio_questao.ListaQuestoesPorAtividade(id_atividade);
-
-            //atividadeVM.ListaQuestoes = new List<Questao>();
+            var questao = _repositorio_questao.ListaQuestoesPorAtividadeAtivasOrdenadas(id_atividade);
+            var opcao = _repositorio_opcao.ListaOpcoesPorAtividade(id_atividade);
+           
             atividadeVM.ListaQuestoes = questao;
+            atividadeVM.ListaOpcoes = opcao;
 
-            return View(atividadeVM);
+            return PartialView(atividadeVM);
             
 
 

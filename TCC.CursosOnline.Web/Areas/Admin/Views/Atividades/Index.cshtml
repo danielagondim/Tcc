@@ -2,7 +2,11 @@
 
 @{
     ViewBag.Title = "Atividadess";
+
+
 }
+
+
 
 <h2>Atividades</h2>
 <hr />
@@ -11,11 +15,11 @@
 <br />
 
 <p>
-    @Html.ActionLink("Nova Atividade", "CadastroAtividade", "Atividades", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-success" }) 
+    @Html.ActionLink("Nova Atividade", "CadastroAtividade", "Atividades", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
@@ -30,29 +34,37 @@
         <th>Visualizar</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ordem)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditarAtividade", new { id_atividade = item.Id_atividade}, new { @class = "btn btn-primary" }) 
-        </td>
-        <td>
-            @Html.ActionLink("Questões", "Index", "Questoes", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-danger" })
-        </td>
-        <td>
-            @Html.ActionLink("Visualizar", "VisualizarAtividade", "Atividades", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-warning" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ordem)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarAtividade", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-primary" })
+            </td>
+            <td>
+                @Html.ActionLink("Questões", "Index", "Questoes", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <button class="btn-details ui-state-default ui-corner-all" data-codigo="@item.Id_atividade">
+                    <span class="ui-icon ui-icon-document" />
+                </button>
+            </td>
+        </tr>
+    }
 
 </table>
 @Html.ActionLink("Voltar", "Index", "Unidades", new { id_curso = @ViewData["id_curso"] }, new { @class = "btn btn-info" })
+
+
+<div id="modal">
+
+</div>

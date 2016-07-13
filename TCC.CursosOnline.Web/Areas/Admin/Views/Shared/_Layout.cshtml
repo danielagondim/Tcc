@@ -9,6 +9,16 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+
+    <script>
+    $(function () {
+        $(".btn-details").click(function () {
+            alert("teste");
+            var codigo = $(this).attr("data-codigo");
+            $("#modal").load("/Atividades/VisualizarAtividade/" + codigo).attr("title", "Visualizar Atividade").dialog();
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

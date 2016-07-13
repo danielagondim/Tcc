@@ -5,13 +5,39 @@
     ViewBag.Title = "Visualizar Atividade";
 }
 
- Atividade: @ViewData["Atividade"]
 
+<p>
+    <h3> @Model.Nome_atividade</h3>
+</p>
+<hr />
 
+<div class="list-group">
+    <ul style="list-style-type:decimal; ">
 
-@foreach (var qts in Model.ListaQuestoes)
-{
-        <span>@qts.Enunciado</span>
-}
+        @foreach (var questao in Model.ListaQuestoes)
+        {
+            <li>
+                <h5>@questao.Enunciado</h5>
+                <ul style="list-style-type:upper-alpha">
+                    @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                    {
+                        <li>
+                            @if (opcao.Correta)
+                            {
+                                <strong>(Correta) </strong>
 
+                            } @opcao.Descricao
 
+                        </li>
+                    }
+                </ul>
+            </li>
+            <br />
+         
+        }
+    </ul>
+</div>
+
+<div>
+    @Html.ActionLink("Voltar", "Index", "Atividades", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-info" })
+</div>

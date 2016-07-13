@@ -20,7 +20,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
        
         //Listas
         public List<Questao> ListaQuestoes { get; set; }
-        public IEnumerable ListaOpcoes { get; set; }
+        public List<Opcao> ListaOpcoes { get; set; }
 
 
 
