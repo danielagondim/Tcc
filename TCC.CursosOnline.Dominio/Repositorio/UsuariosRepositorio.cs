@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Security;
 using TCC.CursosOnline.Dominio.Entidades;
 
 namespace TCC.CursosOnline.Dominio.Repositorio
@@ -19,6 +21,31 @@ namespace TCC.CursosOnline.Dominio.Repositorio
         public Usuario ListaUsuarioPorId(Int32 Id){
 
             return _context.Usuarios.FirstOrDefault(p => p.Id_usuario == Id);
+        }
+
+        public Usuario AutenticaUsuario(int id_usuario, string senha)
+        {
+            return _context.Usuarios.FirstOrDefault(p => p.Id_usuario == id_usuario && p.Senha == senha);
+        }
+
+        public Usuario GetUsuarioLogado()
+        {
+            string _Login = HttpContext.Current.User.Identity.Name;
+
+            if (_Login == "")
+            {
+                return null;
+            }
+            else
+            {
+                return _context.Usuarios.FirstOrDefault(o => o.Id_usuario.ToString() == _Login);
+                
+            }
+        }
+
+        public void Deslogar()
+        {
+            FormsAuthentication.SignOut();
         }
 
         //Salvar ou Alterar um Usuário

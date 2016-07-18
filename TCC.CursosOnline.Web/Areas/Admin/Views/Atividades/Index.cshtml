@@ -8,6 +8,10 @@
 
 
 
+<div class="modal" id="modal">
+
+</div>
+
 <h2>Atividades</h2>
 <hr />
 <h4><strong>Curso:</strong> @ViewData["nome_curso"]</h4>
@@ -54,8 +58,8 @@
                 @Html.ActionLink("Questões", "Index", "Questoes", new { id_atividade = item.Id_atividade }, new { @class = "btn btn-danger" })
             </td>
             <td>
-                <button class="btn-details ui-state-default ui-corner-all" data-codigo="@item.Id_atividade">
-                    <span class="ui-icon ui-icon-document" />
+                <button class="visualizar btn btn-warning text-center" data-id="@item.Id_atividade">
+                    <span class="glyphicon glyphicon-search" />
                 </button>
             </td>
         </tr>
@@ -68,3 +72,9 @@
 <div id="modal">
 
 </div>
+
+
+
+
+
+

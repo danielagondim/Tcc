@@ -83,7 +83,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
             Questao questao = _repositorio.RetornaQuestãoPorId(id_questao);
             var atividades = _repositorio_atividade.ListaAtividadesPorId(questao.Id_atividade);
 
-            ViewData["listaAtividades"] = new SelectList(atividades, "Id_unidade", "titulo");
+            ViewData["listaAtividades"] = new SelectList(atividades, "Id_atividade", "titulo");
             ViewData["Id_atividade"] = questao.Id_atividade;
 
             return View(questao);
@@ -106,7 +106,7 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 
             _repositorio_atividade = new AtividadesRepositorio();
             var atividades = _repositorio_atividade.ListaAtividadesPorId(Questao.Id_atividade);
-            ViewData["listaAtividades"] = new SelectList(atividades, "Id_unidade", "titulo");
+            ViewData["listaAtividades"] = new SelectList(atividades, "Id_atividade", "titulo");
             ViewData["Id_atividade"] = Questao.Id_atividade;
 
             return View(Questao);

@@ -7,8 +7,6 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,24 +17,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Administrativo", "Index", "Home", null, new { @class = "navbar-brand" })
-
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Usuários", "Index", "Usuarios")</li>
-                    <li>@Html.ActionLink("Categorias", "Index", "Categorias")</li>
-                    <li>@Html.ActionLink("Cursos", "Index", "Cursos")</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
-        @if (TempData["mensagem"] != null)
-        {
-            <div class="alert alert-success">@TempData["mensagem"]</div>
-        }
         @RenderBody()
         <hr />
         <footer>
@@ -46,20 +36,5 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/scripts/jquery-ui.js"></script>
-
-    <script>
-        $(function () {
-            $(".visualizar").click(function () {
-
-                var id = $(this).attr("data-id");
-               
-                $("#modal").load("Atividades/VisualizarAtividade?id_atividade=" + id, function () {
-                    $("#modal").modal();
-                })
-            });
-        })
-    </script>
-
 </body>
 </html>

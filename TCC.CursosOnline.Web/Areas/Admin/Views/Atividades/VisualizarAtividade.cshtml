@@ -3,41 +3,45 @@
 
 @{
     ViewBag.Title = "Visualizar Atividade";
+    Layout = null;
 }
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">@Model.Nome_atividade.ToString()</h4>
+        </div>
+        <div class="modal-body">
 
+            <div class="list-group">
+                <ul style="list-style-type:decimal; ">
 
-<p>
-    <h3> @Model.Nome_atividade</h3>
-</p>
-<hr />
-
-<div class="list-group">
-    <ul style="list-style-type:decimal; ">
-
-        @foreach (var questao in Model.ListaQuestoes)
-        {
-            <li>
-                <h5>@questao.Enunciado</h5>
-                <ul style="list-style-type:upper-alpha">
-                    @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                    @foreach (var questao in Model.ListaQuestoes)
                     {
                         <li>
-                            @if (opcao.Correta)
-                            {
-                                <strong>(Correta) </strong>
+                            <h5>@questao.Enunciado</h5>
+                            <ul style="list-style-type:upper-alpha">
+                                @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                                {
+                                    <li>
+                                        @if (opcao.Correta)
+                                        {
+                                            <strong>(Correta) </strong>
 
-                            } @opcao.Descricao
+                                        } @opcao.Descricao
 
+                                    </li>
+                                }
+                            </ul>
                         </li>
+                        <br />
+
                     }
                 </ul>
-            </li>
-            <br />
-         
-        }
-    </ul>
-</div>
-
-<div>
-    @Html.ActionLink("Voltar", "Index", "Atividades", new { id_unidade = @ViewData["id_unidade"] }, new { @class = "btn btn-info" })
-</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

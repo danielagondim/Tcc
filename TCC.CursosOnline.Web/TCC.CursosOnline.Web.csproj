@@ -163,6 +163,7 @@
     <Content Include="Areas\Admin\Views\Opcoes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Opcoes\CadastroOpcao.cshtml" />
     <Content Include="Areas\Admin\Views\Opcoes\EditarOpcao.cshtml" />
+    <Content Include="Areas\Admin\Views\Atividades\VerAtividade.cshtml" />
     <Content Include="Areas\Admin\Views\Atividades\VisualizarAtividade.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -184,6 +185,7 @@
     <Compile Include="Areas\Admin\Controllers\UnidadesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideosController.cs" />
+    <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +205,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Autenticacao\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -214,7 +220,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\Arquivos\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
