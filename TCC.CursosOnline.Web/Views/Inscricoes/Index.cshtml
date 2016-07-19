@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.Curso>
+
+@{
+    ViewBag.Title = "Inscrições";
+}
+
+<h2>Inscrições</h2>
+
+<hr />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo_curso)
+        </th>
+        <th>
+            Categoria
+        </th>
+       
+        
+        <th>Inscrever-se</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo_curso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Inscrever-se", "Inscricao", new { id = item.Id_curso }, new { @class = "btn btn-primary" })
+         
+        </td>
+    </tr>
+}
+
+</table>
