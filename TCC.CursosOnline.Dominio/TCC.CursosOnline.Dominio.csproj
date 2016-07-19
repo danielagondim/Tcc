@@ -108,8 +108,6 @@
     <Compile Include="Repositorio\VideosRepositorio.cs" />
     <Compile Include="Repositorio\UnidadesRepositorio.cs" />
     <Compile Include="Repositorio\UsuariosRepositorio.cs" />
-    <Compile Include="Security\PermissaoProvider.cs" />
-    <Compile Include="Security\PermissoesFiltro.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entidades\Mapping\" />

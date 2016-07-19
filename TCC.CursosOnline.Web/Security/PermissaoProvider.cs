@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TCC.CursosOnline.Dominio.Entidades;
 using TCC.CursosOnline.Dominio.Repositorio;
 
-namespace TCC.CursosOnline.Dominio.Security
+namespace TCC.CursosOnline.Web.Security
 {
     class PermissaoProvider : System.Web.Security.RoleProvider
     {

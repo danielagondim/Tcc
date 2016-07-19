@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using TCC.CursosOnline.Dominio.Repositorio;
 using TCC.CursosOnline.Dominio.Entidades;
+using TCC.CursosOnline.Web.Security;
 
 namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
 {
+    [PermissoesFiltro(Roles = "Administrador")]
     public class OpcoesController : Controller
     {
         private OpcoesRepositorio _repositorio;

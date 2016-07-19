@@ -43,7 +43,7 @@ namespace TCC.CursosOnline.Web.Controllers
                         }
                         else
                         {
-                            return Redirect("Home");
+                            return Redirect("Aluno/Index");
                         }
                     }
                     else
@@ -62,6 +62,17 @@ namespace TCC.CursosOnline.Web.Controllers
   
             }
             return View();
+        }
+
+        public ActionResult Logoff()
+        {
+            _repositorio = new UsuariosRepositorio();
+
+            _repositorio.Deslogar();
+
+            return Redirect("Login");
+
+
         }
     }
 }

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Security;
 
-namespace TCC.CursosOnline.Dominio.Security 
+namespace TCC.CursosOnline.Web.Security 
 {
     class PermissoesFiltro : AuthorizeAttribute
     {
@@ -14,7 +15,8 @@ namespace TCC.CursosOnline.Dominio.Security
             base.OnAuthorization(filterContext);
 
             if (filterContext.Result is HttpUnauthorizedResult)
-                filterContext.HttpContext.Response.Redirect("Home/Negado");
+                
+                filterContext.HttpContext.Response.RedirectToRoute("Default");
         }
     }
 }
