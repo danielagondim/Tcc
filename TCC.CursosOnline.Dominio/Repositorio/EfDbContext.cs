@@ -37,7 +37,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
             modelBuilder.Entity<Curso>().ToTable("Cursos");
             modelBuilder.Entity<Forum_resposta>().ToTable("Forum_Respostas");
             modelBuilder.Entity<Forum_topico>().ToTable("Forum_Topicos");
-            modelBuilder.Entity<Inscricao>().ToTable("Incricoes");
+            modelBuilder.Entity<Inscricao>().ToTable("Inscricoes");
             modelBuilder.Entity<Material>().ToTable("Materiais");
             modelBuilder.Entity<Opcao>().ToTable("Opcoes");
             modelBuilder.Entity<Questao>().ToTable("Questoes");

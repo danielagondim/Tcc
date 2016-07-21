@@ -15,6 +15,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public int Id_usuario { get; set; }
         public int Id_curso { get; set; }
         public DateTime Data { get; set; }
+        public DateTime? Data_resultado { get; set; }
         public int Finalizado { get; set; }
         public decimal Nota_final { get; set; }
         public bool Certificado { get; set; }

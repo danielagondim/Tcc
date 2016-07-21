@@ -12,7 +12,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 {
     public class InscricoesRespositorio
     {
-        private readonly EfDbContext _context = new EfDbContext();
+        private EfDbContext _context;
+
         string conexao = WebConfigurationManager.ConnectionStrings["EfDbContext"].ConnectionString;
 
         public List<Curso> ListaCursosDisponiveis(string id_aluno)
@@ -26,30 +27,51 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
             using (var conn = new SqlConnection(conexao))
             {
-                var cmd = new SqlCommand(sql, conn);
-                List<Curso> dados = new List<Curso>();
-                Curso p = null;
-                try
+                using (var cmd = new SqlCommand(sql, conn))
                 {
-                    conn.Open();
-                    using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    List<Curso> dados = new List<Curso>();
+                    Curso p = null;
+                    try
                     {
-                        while (reader.Read())
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
                         {
-                            p = new Curso();
-                            p.Ativo = (bool)reader["Ativo"];
-                            p.Id_curso = (int)reader["Id_curso"];
-                            p.Id_categoria = (int)reader["Id_categoria"];
-                            p.Titulo_curso = (string)reader["titulo_curso"];                          
-                            dados.Add(p);
+                            while (reader.Read())
+                            {
+                                p = new Curso();
+                                p.Ativo = (bool)reader["Ativo"];
+                                p.Id_curso = (int)reader["Id_curso"];
+                                p.Id_categoria = (int)reader["Id_categoria"];
+                                p.Titulo_curso = (string)reader["titulo_curso"];
+                                dados.Add(p);
+                            }
+
+                            reader.Close();
+                            conn.Close();
                         }
                     }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return dados;
                 }
-                finally
-                {
-                    conn.Close();
-                }
-                return dados;
+
+            }
+        }
+
+        //Salvar a inscrição no curso
+        public void InscreverNoCurso(Inscricao insc)
+        {
+            if (insc.Id_inscricao == 0)
+            {
+                insc.Data_resultado = (DateTime?)null;
+
+                _context = new EfDbContext();
+                //Salvar
+                _context.Inscricoes.Add(insc);
+                _context.SaveChanges();
+
             }
         }
     }

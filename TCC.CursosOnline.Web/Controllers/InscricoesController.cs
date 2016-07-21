@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TCC.CursosOnline.Dominio.Entidades;
 using TCC.CursosOnline.Dominio.Repositorio;
 
 namespace TCC.CursosOnline.Web.Controllers
@@ -22,6 +23,28 @@ namespace TCC.CursosOnline.Web.Controllers
 
             var listaCursos = _repositorio.ListaCursosDisponiveis(principal.Identity.Name.ToString());
             return View(listaCursos);
+        }
+
+      
+        public ActionResult Inscrever(int id_curso)
+        {
+            _repositorio = new InscricoesRespositorio();
+            Inscricao inscricao = new Inscricao();
+
+            string id_usuario = HttpContext.User.Identity.Name.ToString();
+
+            inscricao.Ativo = true;
+            inscricao.Id_curso = id_curso;
+            inscricao.Id_usuario = Convert.ToInt32(id_usuario);
+            inscricao.Data = DateTime.Now;
+            inscricao.Finalizado = 0;
+            inscricao.Certificado = false;
+
+            _repositorio.InscreverNoCurso(inscricao);
+
+            return RedirectToAction("Index");
+
+            
         }
     }
 }
