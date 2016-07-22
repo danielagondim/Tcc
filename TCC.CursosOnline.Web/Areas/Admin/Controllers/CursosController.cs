@@ -20,7 +20,8 @@ namespace TCC.CursosOnline.Web.Areas.Admin.Controllers
         {
             _repositorio = new CursosRepositorio();
             var Cursos = _repositorio.ListaTodosCursos();
-
+           
+           
             return View(Cursos);
         }
 

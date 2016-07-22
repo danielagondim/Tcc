@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
     <Compile Include="Controllers\InscricoesController.cs" />
+    <Compile Include="Controllers\MeusCursosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,7 @@
     <Content Include="Views\Aluno\Negado.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Inscricoes\Index.cshtml" />
+    <Content Include="Views\MeusCursos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

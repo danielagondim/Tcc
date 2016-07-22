@@ -90,6 +90,7 @@
     <Compile Include="Entidades\Material.cs" />
     <Compile Include="Entidades\AtividadeModelView.cs" />
     <Compile Include="Entidades\MaterialModelView.cs" />
+    <Compile Include="Entidades\MeusCursosViewModel.cs" />
     <Compile Include="Entidades\Opcao.cs" />
     <Compile Include="Entidades\Questao.cs" />
     <Compile Include="Entidades\Resposta.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Entidades\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\InscricoesRespositorio.cs" />
+    <Compile Include="Repositorio\MeusCursosRepositorio.cs" />
     <Compile Include="Repositorio\OpcoesRepositorio.cs" />
     <Compile Include="Repositorio\QuestoesRepositorio.cs" />
     <Compile Include="Repositorio\CategoriasRepositorio.cs" />

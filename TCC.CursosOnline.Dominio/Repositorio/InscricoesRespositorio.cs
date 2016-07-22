@@ -65,8 +65,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
         {
             if (insc.Id_inscricao == 0)
             {
-                insc.Data_resultado = (DateTime?)null;
-
+               
                 _context = new EfDbContext();
                 //Salvar
                 _context.Inscricoes.Add(insc);

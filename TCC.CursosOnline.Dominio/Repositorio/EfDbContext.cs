@@ -49,5 +49,6 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         }
 
+        public System.Data.Entity.DbSet<TCC.CursosOnline.Dominio.Entidades.MeusCursosViewModel> MeusCursosViewModels { get; set; }
     }
 }

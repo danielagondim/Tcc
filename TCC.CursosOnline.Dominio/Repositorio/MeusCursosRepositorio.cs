@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Configuration;
+using TCC.CursosOnline.Dominio.Entidades;
+
+namespace TCC.CursosOnline.Dominio.Repositorio
+{
+    public class MeusCursosRepositorio
+    {
+
+        private EfDbContext _context;
+        string conexao = WebConfigurationManager.ConnectionStrings["EfDbContext"].ConnectionString;
+
+
+        public List<MeusCursosViewModel> ListaMeusCursos(string id_usuario)
+        {
+            var sql = " select " +
+                      "    cursos.id_curso, " +
+                      "    cursos.titulo_curso, " +
+                      "    Categorias.id_categoria, " +
+                      "    Categorias.descricao, " +
+                      "    Inscricoes.id_inscricao, " +
+                      "    Inscricoes.data, " +
+                      "    Inscricoes.finalizado, " +
+                      "    Inscricoes.nota_final, " +
+                      "    Inscricoes.data_resultado, " +
+                      "    (convert(varchar(5), (count(Andamentos.id_video) * 100) / count(Videos.id_video)) + '%') as andamento " +
+                      " from " +
+                      "     Inscricoes " +
+                      "     inner join Cursos on Cursos.id_curso = Inscricoes.id_curso " +
+                      "     inner join Categorias on Categorias.id_categoria = Cursos.id_categoria " +
+                      "     inner join Unidades on Unidades.id_curso = Cursos.id_curso " +
+                      "     left join Videos on Videos.id_unidade = Unidades.id_unidade " +
+                      "     Left Join Andamentos on Andamentos.id_inscricao = Inscricoes.id_inscricao and Andamentos.id_video = Videos.id_video " +
+                      " where " +
+                      "     Inscricoes.id_usuario = " + id_usuario +
+                      "     and Inscricoes.ativo = 1 " +
+                      "     and Cursos.ativo = 1 " +
+                      " group by " +
+                      "     cursos.id_curso, " +
+                      "     cursos.titulo_curso," +
+                      "     Categorias.id_categoria," +
+                      "     Categorias.descricao," +
+                      "     Inscricoes.id_inscricao," +
+                      "     Inscricoes.data," +
+                      "     Inscricoes.finalizado," +
+                      "     Inscricoes.nota_final," +
+                      "     Inscricoes.data_resultado ";
+
+            using (var conn = new SqlConnection(conexao))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    List<MeusCursosViewModel> dados = new List<MeusCursosViewModel>();
+                    MeusCursosViewModel p = null;
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
+                                p = new MeusCursosViewModel();
+                                p.Id_inscricao = (int)reader["id_inscricao"];
+                                p.Id_curso = (int)reader["id_curso"];
+                                p.Titulo_curso = (string)reader["titulo_curso"];
+                                p.Id_categoria = (int)reader["id_categoria"];
+                                p.descricao_categoria = (string)reader["descricao"];
+                                p.Dt_inscricao = (DateTime)reader["data"];
+                                p.Dt_resultado = (DateTime?)reader["data_resultado"];
+                                p.finalizado = (bool)reader["finalizado"];
+                                p.NotaFinal = (decimal)reader["nota_final"];
+                                p.Andamento = (string)reader["andamento"];
+                                dados.Add(p);
+                            }
+
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return dados;
+                }
+
+            }
+        }
+    }
+}
