@@ -29,10 +29,15 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public string Andamento { get; set; }
 
-        public decimal? NotaFinal { get; set; }
+        public int NotaFinal { get; set; }
 
-        public bool finalizado { get; set; }
+        public int finalizado { get; set; }
 
+
+        public List<Unidade> ListaUnidades { get; set; }
+        public List<Video> ListaVideos { get; set; }
+        public List<Atividade> ListaAtividades { get; set; }
+      
 
 
     }

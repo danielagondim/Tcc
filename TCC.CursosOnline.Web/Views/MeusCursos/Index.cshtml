@@ -10,55 +10,52 @@
 
 <table class="table">
     <tr>
-        
+
         <th>
             Curso
-        </th>       
+        </th>
         <th>
-           Categoria
+            Categoria
         </th>
         <th>
             Data Inscrição
         </th>
-        <th>
-            Data Resultado
-        </th>
+
         <th>
             Andamento
         </th>
         <th>
             Nota Final
         </th>
-       
+
         <th>Acessar</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo_curso)
-        </td>       
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao_categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dt_inscricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dt_resultado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Andamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NotaFinal)
-        </td>      
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_inscricao }) 
-           
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo_curso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dt_inscricao)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Andamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotaFinal)
+            </td>
+            <td>
+                @Html.ActionLink("Acessar", "Acessar", new { id_curso = item.Id_curso }, new { @class = "btn btn-primary" })
+
+            </td>
+        </tr>
+    }
 
 </table>

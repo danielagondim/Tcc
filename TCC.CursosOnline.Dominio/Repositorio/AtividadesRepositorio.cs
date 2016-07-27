@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using TCC.CursosOnline.Dominio.Entidades;
 
 namespace TCC.CursosOnline.Dominio.Repositorio
@@ -10,7 +13,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
     public class AtividadesRepositorio
     {
         private readonly EfDbContext _context = new EfDbContext();
-
+        string conexao = WebConfigurationManager.ConnectionStrings["EfDbContext"].ConnectionString;
 
         public List<Atividade> ListaAtividadesPorUnidade(int id_unidade)
         {
@@ -57,6 +60,57 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
             _context.SaveChanges();
 
+        }
+
+        public List<Atividade> ListaAtividadesPorCurso(int id_curso)
+        {
+            var sql = " select Atividades.* " +
+                      " from Cursos " +
+                      " inner join Unidades on Unidades.id_curso = Cursos.id_curso " +
+                      " inner join Atividades on Atividades.id_unidade = Unidades.id_unidade " +
+                      " where " +
+                      " (1 = 1) " +
+                      " and Cursos.ativo = 1 " +
+                      " and Cursos.id_curso = " + id_curso.ToString() +
+                      " and Unidades.ativo = 1 " +
+                      " and Atividades.ativo = 1 " +
+                      " order by " +
+                      " Atividades.ordem ";
+
+            using (var conn = new SqlConnection(conexao))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    List<Atividade> dados = new List<Atividade>();
+                    Atividade p = null;
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
+                                p = new Atividade();
+                                p.Id_unidade = (int)reader["id_unidade"];
+                                p.Id_atividade = (int)reader["id_atividade"];
+                                p.Titulo = (string)reader["titulo"];
+                                p.Ordem = (int)reader["ordem"];
+                                p.Ativo = (bool)reader["ativo"];
+                                dados.Add(p);
+                            }
+
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return dados;
+                }
+
+            }
         }
 
 
