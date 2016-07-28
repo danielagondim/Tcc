@@ -12,8 +12,6 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 {
     public class MeusCursosRepositorio
     {
-
-        private EfDbContext _context;
         string conexao = WebConfigurationManager.ConnectionStrings["EfDbContext"].ConnectionString;
 
 

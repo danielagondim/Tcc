@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +8,9 @@ namespace TCC.CursosOnline.Dominio.Entidades
 {
     public class MeusCursosViewModel
     {
-        [Key]
+
+        public int Id { get; set; }
+
         public int Id_inscricao { get; set; }
 
 
@@ -21,7 +22,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public string descricao_categoria { get; set; }
 
-       
+
 
         public DateTime Dt_inscricao { get; set; }
 
@@ -34,11 +35,10 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public int finalizado { get; set; }
 
 
-        public List<Unidade> ListaUnidades { get; set; }
         public List<Video> ListaVideos { get; set; }
+
         public List<Atividade> ListaAtividades { get; set; }
-      
 
-
+        public List<Unidade> ListaUnidade { get; set; }
     }
 }

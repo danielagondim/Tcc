@@ -40,9 +40,9 @@ namespace TCC.CursosOnline.Web.Controllers
 
             dadosCurso = _repositorio.BuscaDadosDoCurso(id_curso.ToString(), principal.Identity.Name.ToString());
 
-            //dadosCurso.ListaUnidades = _repositorioUnidade.ListaUnidadesPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaVideos = _repositorioVideo.ListaVideosPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaAtividades = _repositorioAtividade.ListaAtividadesPorCurso(dadosCurso.Id_curso);
+            dadosCurso.ListaUnidade = _repositorioUnidade.ListaUnidadesPorCurso(dadosCurso.Id_curso);
 
             return View(dadosCurso);
 
