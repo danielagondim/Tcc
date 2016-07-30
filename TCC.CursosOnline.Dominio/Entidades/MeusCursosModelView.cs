@@ -40,5 +40,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public List<Atividade> ListaAtividades { get; set; }
 
         public List<Unidade> ListaUnidade { get; set; }
+
+        public List<Material> ListaMaterial { get; set; }
     }
 }

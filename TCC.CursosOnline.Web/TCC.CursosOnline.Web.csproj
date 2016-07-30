@@ -218,6 +218,7 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Inscricoes\Index.cshtml" />
     <Content Include="Views\MeusCursos\Index.cshtml" />
+    <Content Include="Views\MeusCursos\Acessar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

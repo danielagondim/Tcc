@@ -9,12 +9,14 @@ using TCC.CursosOnline.Dominio.Repositorio;
 
 namespace TCC.CursosOnline.Web.Controllers
 {
+    [Authorize]
     public class MeusCursosController : Controller
     {
         private MeusCursosRepositorio _repositorio;
         private UnidadesRepositorio _repositorioUnidade;
         private VideosRepositorio _repositorioVideo;
         private AtividadesRepositorio _repositorioAtividade;
+        private MateriaisRepositorio _repositorioMaterial;
 
         // GET: Listar os cursos que o aluno eta inscrito
         public ActionResult Index()
@@ -33,6 +35,7 @@ namespace TCC.CursosOnline.Web.Controllers
             _repositorioUnidade = new UnidadesRepositorio();
             _repositorioVideo = new VideosRepositorio();
             _repositorioAtividade = new AtividadesRepositorio();
+            _repositorioMaterial = new MateriaisRepositorio();
 
             IPrincipal principal = HttpContext.User;
 
@@ -43,6 +46,7 @@ namespace TCC.CursosOnline.Web.Controllers
             dadosCurso.ListaVideos = _repositorioVideo.ListaVideosPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaAtividades = _repositorioAtividade.ListaAtividadesPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaUnidade = _repositorioUnidade.ListaUnidadesPorCurso(dadosCurso.Id_curso);
+            dadosCurso.ListaMaterial = _repositorioMaterial.ListaMateriaisPorCurso(dadosCurso.Id_curso);
 
             return View(dadosCurso);
 

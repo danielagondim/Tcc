@@ -10,6 +10,7 @@ using TCC.CursosOnline.Dominio.Repositorio;
 
 namespace TCC.CursosOnline.Web.Controllers
 {
+    [Authorize]
     public class InscricoesController : Controller
     {
         private InscricoesRespositorio _repositorio;
