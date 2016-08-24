@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
@@ -45,12 +46,29 @@ namespace TCC.CursosOnline.Web.Controllers
 
             dadosCurso.ListaVideos = _repositorioVideo.ListaVideosPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaAtividades = _repositorioAtividade.ListaAtividadesPorCurso(dadosCurso.Id_curso);
-            dadosCurso.ListaUnidade = _repositorioUnidade.ListaUnidadesPorCurso(dadosCurso.Id_curso);
+            dadosCurso.ListaUnidade = _repositorioUnidade.ListaUnidadesAtivasPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaMaterial = _repositorioMaterial.ListaMateriaisPorCurso(dadosCurso.Id_curso);
 
             return View(dadosCurso);
 
 
         }
+
+        public ActionResult VerVideo (int id_video, int id_inscricao)
+        {
+            _repositorio = new MeusCursosRepositorio();
+            _repositorioVideo = new VideosRepositorio();
+            
+            var videoselecionado = new Video();
+            videoselecionado = _repositorioVideo.RetornaVideoPorId(id_video);
+
+            //_repositorio.InsereAndamento(id_video, id_inscricao);
+
+            return PartialView(videoselecionado);
+        }
+
+        
+
+
     }
 }

@@ -5,6 +5,9 @@
     ViewBag.Title = "Meus Cursos";
 }
 
+<div class="modal" id="modal">
+
+</div>
 
 <p>
     <h3><strong>@Model.Titulo_curso</strong></h3>
@@ -17,15 +20,19 @@
             {
             <li>
                 <h4><strong>@unidade.Nome</strong></h4>
-
+                <hr />
                 <ul>
                     <p><strong>Videos</strong></p>
                     <hr style="margin-top: -10px" />
                     @foreach (var videos in Model.ListaVideos.Where(p => p.Id_Unidade.Equals(unidade.Id_unidade)))
                     {
-                    <li  style="list-style-type: none; margin: 5px">
+                    <li  style="list-style-type: disc; margin: 5px">
 
-                        @Html.ActionLink(videos.Nome, "VerVideo", new { id_video = videos.Id_video }, new { @class = "btn btn-primary" })
+                        @*@Html.ActionLink(videos.Nome, "VerVideo", new { id_video = videos.Id_video, id_inscricao = Model.Id_inscricao })*@
+
+                        <a class="vervideo text-center" data-id_video="@videos.Id_video" data-id_inscricao="@Model.Id_inscricao">
+                            @videos.Nome
+                        </a>
 
                     </li>
                     }
@@ -41,7 +48,7 @@
                     {
                         <li  style="list-style-type: none; margin: 5px">
 
-                            @Html.ActionLink(atividades.Titulo, "VerAtividade", new { id_atividade = atividades.Id_atividade }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink(atividades.Titulo, "VerAtividade", new { id_atividade = atividades.Id_atividade })
 
                         </li>
                     }
@@ -59,8 +66,9 @@
         @foreach (var material in Model.ListaMaterial)
         {
             <li style="list-style:none; margin: 5px;">
-                @Html.ActionLink(material.Nome, "VerMaterial", new { id_material = material.Id_materiais }, new { @class = "btn btn-info" })
+               <a href="@material.Arquivo" target="_blank" >@material.Nome</a>
             </li>
         }
     </ul>
 </div>
+

@@ -13,8 +13,9 @@ namespace TCC.CursosOnline.Dominio.Repositorio
     public class MeusCursosRepositorio
     {
         string conexao = WebConfigurationManager.ConnectionStrings["EfDbContext"].ConnectionString;
+        private readonly EfDbContext _context = new EfDbContext();
 
-
+        //Lista os cursos que o usuario esta inscrito
         public List<MeusCursosViewModel> ListaMeusCursos(string id_usuario)
         {
             var sql = " select " +
@@ -70,8 +71,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                                 p.Id_categoria = (int)reader["id_categoria"];
                                 p.descricao_categoria = (string)reader["descricao"];
                                 p.Dt_inscricao = (DateTime)reader["data"];
-                                p.finalizado = (int)reader["finalizado"];                                
-                                p.NotaFinal = (int)reader["nota_final"];                                
+                                p.finalizado = (int)reader["finalizado"];
+                                p.NotaFinal = (int)reader["nota_final"];
                                 p.Andamento = (string)reader["andamento"];
                                 dados.Add(p);
                             }
@@ -89,7 +90,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
             }
         }
-
+        
+        //Busca os dados do curso
         public MeusCursosViewModel BuscaDadosDoCurso(string id_curso, string id_usuario)
         {
             var sql = " select " +
@@ -166,6 +168,16 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                 }
             }
         }
-            
+
+
+        //Gravar Andamento
+        public void InsereAndamento(int id_video, int id_inscricao)
+        {
+            var Andamento = _context.Andamentos.Where(p => p.Id_inscricao.Equals(id_inscricao) && p.Id_video.Equals(id_video)).ToList();
+
+
+
+        }
+
     }
 }

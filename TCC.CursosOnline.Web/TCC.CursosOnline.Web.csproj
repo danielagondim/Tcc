@@ -129,6 +129,34 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\mediaelement\background.png" />
+    <Content Include="Content\mediaelement\bigplay.fw.png" />
+    <Content Include="Content\mediaelement\bigplay.png" />
+    <Content Include="Content\mediaelement\bigplay.svg" />
+    <Content Include="Content\mediaelement\controls-ted.png" />
+    <Content Include="Content\mediaelement\controls-wmp-bg.png" />
+    <Content Include="Content\mediaelement\controls-wmp.png" />
+    <Content Include="Content\mediaelement\controls.fw.png" />
+    <Content Include="Content\mediaelement\controls.png" />
+    <Content Include="Content\mediaelement\controls.svg" />
+    <Content Include="Content\mediaelement\DO NOT CHANGE THESE FILES. USE -src- FOLDER.txt" />
+    <Content Include="Content\mediaelement\flashmediaelement-cdn.swf" />
+    <Content Include="Content\mediaelement\flashmediaelement-debug.swf" />
+    <Content Include="Content\mediaelement\flashmediaelement.swf" />
+    <Content Include="Content\mediaelement\jquery.js" />
+    <Content Include="Content\mediaelement\jumpforward.png" />
+    <Content Include="Content\mediaelement\loading.gif" />
+    <Content Include="Content\mediaelement\mediaelement-and-player.js" />
+    <Content Include="Content\mediaelement\mediaelement-and-player.min.js" />
+    <Content Include="Content\mediaelement\mediaelement.js" />
+    <Content Include="Content\mediaelement\mediaelement.min.js" />
+    <Content Include="Content\mediaelement\mediaelementplayer.css" />
+    <Content Include="Content\mediaelement\mediaelementplayer.js" />
+    <Content Include="Content\mediaelement\mediaelementplayer.min.css" />
+    <Content Include="Content\mediaelement\mediaelementplayer.min.js" />
+    <Content Include="Content\mediaelement\mejs-skins.css" />
+    <Content Include="Content\mediaelement\silverlightmediaelement.xap" />
+    <Content Include="Content\mediaelement\skipback.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,6 +247,7 @@
     <Content Include="Views\Inscricoes\Index.cshtml" />
     <Content Include="Views\MeusCursos\Index.cshtml" />
     <Content Include="Views\MeusCursos\Acessar.cshtml" />
+    <Content Include="Views\MeusCursos\VerVideo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

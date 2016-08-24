@@ -1,0 +1,20 @@
+﻿@model TCC.CursosOnline.Dominio.Entidades.Video
+
+
+@{
+    ViewBag.Title = "Vídeo";
+    Layout = null;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" id="botaofechar"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">@Model.Nome</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row" >
+                <iframe width="560" height="315" src="@Model.Url" frameborder="0" allowfullscreen id="frameVideo"></iframe>
+            </div>
+        </div>      
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
