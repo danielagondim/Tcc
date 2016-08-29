@@ -40,6 +40,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                       "     Inscricoes.id_usuario = " + id_usuario +
                       "     and Inscricoes.ativo = 1 " +
                       "     and Cursos.ativo = 1 " +
+                      "     and Unidades.ativo = 1 " +
+                      "     and Videos.ativo = 1 " +
                       " group by " +
                       "     cursos.id_curso, " +
                       "     cursos.titulo_curso," +
@@ -174,6 +176,19 @@ namespace TCC.CursosOnline.Dominio.Repositorio
         public void InsereAndamento(int id_video, int id_inscricao)
         {
             var Andamento = _context.Andamentos.Where(p => p.Id_inscricao.Equals(id_inscricao) && p.Id_video.Equals(id_video)).ToList();
+            Andamento novoAndamento = new Andamento();
+
+            if (Andamento.Count == 0)
+            {
+
+                novoAndamento.Data = DateTime.Now;
+                novoAndamento.Id_inscricao = id_inscricao;
+                novoAndamento.Id_video = id_video;
+
+                //Salvar
+                _context.Andamentos.Add(novoAndamento);
+                _context.SaveChanges();
+            }
 
 
 

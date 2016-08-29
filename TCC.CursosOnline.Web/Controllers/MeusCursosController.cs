@@ -62,7 +62,7 @@ namespace TCC.CursosOnline.Web.Controllers
             var videoselecionado = new Video();
             videoselecionado = _repositorioVideo.RetornaVideoPorId(id_video);
 
-            //_repositorio.InsereAndamento(id_video, id_inscricao);
+            _repositorio.InsereAndamento(id_video, id_inscricao);
 
             return PartialView(videoselecionado);
         }
