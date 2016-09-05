@@ -194,5 +194,58 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         }
 
+        public List<Atividade> BuscaQuestoesAtividade(int id_atividade, int id_resultado)
+        {
+            var sql = "select " + 
+                      "     top 1 " +
+                      "     Questoes.id_questao, " +
+	                  "     Questoes.enunciado,  " +
+	                  "     Questoes.ordem,      " +
+	                  "     Questoes.ativo,      " +
+	                  "     Questoes.id_atividade" +
+                      "from " +
+                      "     Questoes " +
+                      "where " +
+                      "     Questoes.id_atividade = " + id_atividade +
+                      " and Questoes.ativo = 1 " +
+                      " and Questoes.id_questao not in (select id_questao from Respostas where id_resultado = " + id_resultado + ") " +
+                      "order by Questoes.ordem";
+
+            using (var conn = new SqlConnection(conexao))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    List<Atividade> dados = new List<Atividade>();
+                    Atividade p = null;
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
+                                p = new Atividade();
+                                p.Id_unidade = (int)reader["id_unidade"];
+                                p.Id_atividade = (int)reader["id_atividade"];
+                                p.Titulo = (string)reader["titulo"];
+                                p.Ordem = (int)reader["ordem"];
+                                p.Ativo = (bool)reader["ativo"];
+                                dados.Add(p);
+                            }
+
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return dados;
+                }
+
+            }
+        }
+
     }
 }

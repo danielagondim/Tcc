@@ -18,6 +18,7 @@ namespace TCC.CursosOnline.Web.Controllers
         private VideosRepositorio _repositorioVideo;
         private AtividadesRepositorio _repositorioAtividade;
         private MateriaisRepositorio _repositorioMaterial;
+        private ResultadosRespositorio _repositorioResultado;
 
         // GET: Listar os cursos que o aluno eta inscrito
         public ActionResult Index()
@@ -65,6 +66,40 @@ namespace TCC.CursosOnline.Web.Controllers
             _repositorio.InsereAndamento(id_video, id_inscricao);
 
             return PartialView(videoselecionado);
+        }
+
+        public ActionResult RealizarAtividade (int id_atividade, int id_inscricao)
+        {
+           
+            _repositorio = new MeusCursosRepositorio();
+            _repositorioResultado = new ResultadosRespositorio();
+
+
+            //Primeiro verifica se ja existe o registro em Resultados
+            //Se não existir adiciona o registro
+
+            List<Resultado> listaresultados = _repositorioResultado.ListaResultados(id_inscricao, id_atividade);
+            if (listaresultados.Count > 0)
+            {
+                //Ja existe
+            }
+            else
+            {
+                Resultado resultado = new Resultado();
+                resultado.Id_inscricao = id_inscricao;
+                resultado.Id_atividade = id_atividade;
+                resultado.Data = DateTime.Now;
+
+                _repositorioResultado.Salvar(resultado);
+                //Gravar resultado
+            }
+
+            //Mostra a primeira pergunta
+            AtividadeViewModel avaliacao = new AtividadeViewModel();
+            avaliacao = _repositorio.
+
+
+            return View();
         }
 
         

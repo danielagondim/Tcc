@@ -26,11 +26,9 @@
                     <hr style="margin-top: -10px" />
                     @foreach (var videos in Model.ListaVideos.Where(p => p.Id_Unidade.Equals(unidade.Id_unidade)))
                     {
-                    <li  style="list-style-type: disc; margin: 5px">
+                    <li  style="list-style-type: none; margin: 5px">
 
-                        @*@Html.ActionLink(videos.Nome, "VerVideo", new { id_video = videos.Id_video, id_inscricao = Model.Id_inscricao })*@
-
-                        <a class="vervideo text-center" data-id_video="@videos.Id_video" data-id_inscricao="@Model.Id_inscricao">
+                        <a class="vervideo text-center" data-id_video="@videos.Id_video" data-id_inscricao="@Model.Id_inscricao" style="cursor:pointer">
                             @videos.Nome
                         </a>
 
@@ -48,7 +46,7 @@
                     {
                         <li  style="list-style-type: none; margin: 5px">
 
-                            @Html.ActionLink(atividades.Titulo, "VerAtividade", new { id_atividade = atividades.Id_atividade })
+                            @Html.ActionLink(atividades.Titulo, "RealizarAtividade", new { id_atividade = atividades.Id_atividade, id_inscricao = Model.Id_inscricao })
 
                         </li>
                     }
