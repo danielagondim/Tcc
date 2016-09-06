@@ -19,6 +19,7 @@ namespace TCC.CursosOnline.Web.Controllers
         private AtividadesRepositorio _repositorioAtividade;
         private MateriaisRepositorio _repositorioMaterial;
         private ResultadosRespositorio _repositorioResultado;
+        private OpcoesRepositorio _repositorioOpcao;
 
         // GET: Listar os cursos que o aluno eta inscrito
         public ActionResult Index()
@@ -73,6 +74,8 @@ namespace TCC.CursosOnline.Web.Controllers
            
             _repositorio = new MeusCursosRepositorio();
             _repositorioResultado = new ResultadosRespositorio();
+            _repositorioAtividade = new AtividadesRepositorio();
+            _repositorioOpcao = new OpcoesRepositorio();
 
 
             //Primeiro verifica se ja existe o registro em Resultados
@@ -94,12 +97,18 @@ namespace TCC.CursosOnline.Web.Controllers
                 //Gravar resultado
             }
 
+            //Retorna o id_resultado dessa atividade
+            int id_resultado = _repositorioResultado.RetornaResultado(id_inscricao, id_atividade);
+
             //Mostra a primeira pergunta
-            AtividadeViewModel avaliacao = new AtividadeViewModel();
-            avaliacao = _repositorio.
+            AtividadeViewModel atividade = new AtividadeViewModel();
+            atividade.Id = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Id_atividade;
+            atividade.Nome_atividade = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Titulo;
+            atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
+            atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
 
 
-            return View();
+            return PartialView(atividade);
         }
 
         

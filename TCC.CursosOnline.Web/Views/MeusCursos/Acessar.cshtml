@@ -26,13 +26,13 @@
                     <hr style="margin-top: -10px" />
                     @foreach (var videos in Model.ListaVideos.Where(p => p.Id_Unidade.Equals(unidade.Id_unidade)))
                     {
-                    <li  style="list-style-type: none; margin: 5px">
+                        <li style="list-style-type: none; margin: 5px">
 
-                        <a class="vervideo text-center" data-id_video="@videos.Id_video" data-id_inscricao="@Model.Id_inscricao" style="cursor:pointer">
-                            @videos.Nome
-                        </a>
+                            <a class="vervideo text-center" data-id_video="@videos.Id_video" data-id_inscricao="@Model.Id_inscricao" style="cursor:pointer">
+                                @videos.Nome
+                            </a>
 
-                    </li>
+                        </li>
                     }
                 </ul>
 
@@ -44,10 +44,11 @@
                     <hr style="margin-top: -10px" />
                     @foreach (var atividades in Model.ListaAtividades.Where(p => p.Id_unidade.Equals(unidade.Id_unidade)))
                     {
-                        <li  style="list-style-type: none; margin: 5px">
+                        <li style="list-style-type: none; margin: 5px">
 
-                            @Html.ActionLink(atividades.Titulo, "RealizarAtividade", new { id_atividade = atividades.Id_atividade, id_inscricao = Model.Id_inscricao })
-
+                            <a class="realizarAtividade text-center" data-id_atividade="@atividades.Id_atividade" data-id_inscricao="@Model.Id_inscricao" style="cursor:pointer">
+                                @atividades.Titulo
+                            </a>
                         </li>
                     }
                 </ul>
@@ -64,7 +65,7 @@
         @foreach (var material in Model.ListaMaterial)
         {
             <li style="list-style:none; margin: 5px;">
-               <a href="@material.Arquivo" target="_blank" >@material.Nome</a>
+                <a href="@material.Arquivo" target="_blank">@material.Nome</a>
             </li>
         }
     </ul>

@@ -23,6 +23,12 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         }
 
+        public int RetornaResultado(int id_inscricao, int id_atividade)
+        {
+            EfDbContext _context = new EfDbContext();
+            return _context.Resultados.FirstOrDefault(p => p.Id_atividade.Equals(id_atividade) && p.Id_inscricao.Equals(id_inscricao)).Id_resultado;
+        }
+
         //Salvar o resultado
         public void Salvar(Resultado result)
         {

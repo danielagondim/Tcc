@@ -194,7 +194,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         }
 
-        public List<Atividade> BuscaQuestoesAtividade(int id_atividade, int id_resultado)
+        public List<Questao> BuscaQuestoesAtividade(int id_atividade, int id_resultado)
         {
             var sql = "select " + 
                       "     top 1 " +
@@ -202,7 +202,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 	                  "     Questoes.enunciado,  " +
 	                  "     Questoes.ordem,      " +
 	                  "     Questoes.ativo,      " +
-	                  "     Questoes.id_atividade" +
+	                  "     Questoes.id_atividade " +
                       "from " +
                       "     Questoes " +
                       "where " +
@@ -215,8 +215,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
             {
                 using (var cmd = new SqlCommand(sql, conn))
                 {
-                    List<Atividade> dados = new List<Atividade>();
-                    Atividade p = null;
+                    List<Questao> dados = new List<Questao>();
+                    Questao p = null;
                     try
                     {
                         conn.Open();
@@ -224,10 +224,10 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                         {
                             while (reader.Read())
                             {
-                                p = new Atividade();
-                                p.Id_unidade = (int)reader["id_unidade"];
+                                p = new Questao();
                                 p.Id_atividade = (int)reader["id_atividade"];
-                                p.Titulo = (string)reader["titulo"];
+                                p.Id_questao = (int)reader["id_questao"];
+                                p.Enunciado = (string)reader["enunciado"];
                                 p.Ordem = (int)reader["ordem"];
                                 p.Ativo = (bool)reader["ativo"];
                                 dados.Add(p);

@@ -62,6 +62,17 @@
                 })
             });
 
+            $(".realizarAtividade").click(function () {
+
+                var id_atividade = $(this).attr("data-id_atividade");
+                var id_inscricao = $(this).attr("data-id_inscricao");
+
+
+                $("#modal").load("/MeusCursos/RealizarAtividade?id_atividade=" + id_atividade + "&&id_inscricao=" + id_inscricao, function () {
+                    $("#modal").modal();
+                })
+            });
+
         })
        
        
