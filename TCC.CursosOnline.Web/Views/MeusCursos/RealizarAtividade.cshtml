@@ -32,7 +32,7 @@
                                         @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
                                         {
                                             <li>
-                                                <input type="radio" class="radio radio-inline" name="TipoFormatoId" value="@opcao.Id_questao">@opcao.Descricao
+                                                <input type="radio" class="radio radio-inline" name="QuestoesId" value="@opcao.Id_questao">@opcao.Descricao
 
                                             </li>
                                         }

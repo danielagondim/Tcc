@@ -111,7 +111,16 @@ namespace TCC.CursosOnline.Web.Controllers
             return PartialView(atividade);
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealizarAtividade(AtividadeViewModel model)
+        {
+            var id_opcao_selecionada = model.ListaOpcoes;
+
+            return PartialView(model);
+        }
+
+
 
 
     }
