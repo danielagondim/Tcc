@@ -20,6 +20,7 @@ namespace TCC.CursosOnline.Web.Controllers
         private MateriaisRepositorio _repositorioMaterial;
         private ResultadosRespositorio _repositorioResultado;
         private OpcoesRepositorio _repositorioOpcao;
+        private RespostasRepositorio _respositorioResposta;
 
         // GET: Listar os cursos que o aluno eta inscrito
         public ActionResult Index()
@@ -32,6 +33,7 @@ namespace TCC.CursosOnline.Web.Controllers
             return View(listaCursos);
         }
 
+        //Mostra os videos e atividades do curso selecionado
         public ActionResult Acessar(int id_curso)
         {
             _repositorio = new MeusCursosRepositorio();
@@ -56,6 +58,7 @@ namespace TCC.CursosOnline.Web.Controllers
 
         }
 
+        //Exibe o video em um modal
         public ActionResult VerVideo (int id_video, int id_inscricao)
         {
             _repositorio = new MeusCursosRepositorio();
@@ -69,6 +72,8 @@ namespace TCC.CursosOnline.Web.Controllers
             return PartialView(videoselecionado);
         }
 
+        
+        //Realizar a atividade uma questão por vez
         public ActionResult RealizarAtividade (int id_atividade, int id_inscricao)
         {
            
@@ -76,15 +81,18 @@ namespace TCC.CursosOnline.Web.Controllers
             _repositorioResultado = new ResultadosRespositorio();
             _repositorioAtividade = new AtividadesRepositorio();
             _repositorioOpcao = new OpcoesRepositorio();
+         
 
-
-            //Primeiro verifica se ja existe o registro em Resultados
+            //Verifica se ja existe o registro em Resultados
             //Se não existir adiciona o registro
 
             List<Resultado> listaresultados = _repositorioResultado.ListaResultados(id_inscricao, id_atividade);
             if (listaresultados.Count > 0)
             {
-                //Ja existe
+                if (listaresultados[0].finalizado)
+                {
+                    //Ativide ja foi finalizada exibe uma mensagem
+                }
             }
             else
             {
@@ -105,19 +113,41 @@ namespace TCC.CursosOnline.Web.Controllers
             atividade.Id = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Id_atividade;
             atividade.Nome_atividade = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Titulo;
             atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
-            atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
+            atividade.IdResultado = id_resultado;
+            if (atividade.ListaQuestoes.Count == 0)
+            {
+                //Aqui finaliza a atividade e contabiliza a nota
+                //Mensagem de atividade realizada
+                return PartialView();
 
-
-            return PartialView(atividade);
+            }else
+            {
+                //Mostra a proxima questão
+                atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
+                return PartialView(atividade);
+            }
+           
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RealizarAtividade(AtividadeViewModel model)
         {
+            _respositorioResposta = new RespostasRepositorio();
             var id_opcao_selecionada = model.ListaOpcoes;
+            var id_questao = model.ListaQuestoes[0].Id_questao;
+            var id_resultado = model.IdResultado;
+            var id_inscricao = model.IdInscricao;
+            var id_atividade = model.Id;
+            Resposta resposta = new Resposta();
+            resposta.Data = DateTime.Now;
+            resposta.Id_resultado = model.IdResultado;
+             
 
-            return PartialView(model);
+            //Gravar as respostas
+
+
+            return RedirectToAction("RealizarAtividade", new { id_atividade = id_atividade, id_inscricao = id_inscricao } );
         }
 
 

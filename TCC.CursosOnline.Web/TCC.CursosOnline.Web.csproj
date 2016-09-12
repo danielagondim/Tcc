@@ -249,6 +249,7 @@
     <Content Include="Views\MeusCursos\Acessar.cshtml" />
     <Content Include="Views\MeusCursos\VerVideo.cshtml" />
     <Content Include="Views\MeusCursos\RealizarAtividade.cshtml" />
+    <Content Include="Views\MeusCursos\AtividadeFinalizada.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

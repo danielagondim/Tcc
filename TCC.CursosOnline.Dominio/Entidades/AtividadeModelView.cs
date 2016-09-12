@@ -26,5 +26,11 @@ namespace TCC.CursosOnline.Dominio.Entidades
         //Respostas      
         public int? OpcaoId { get; set; }
 
+        //Resultado
+        public int? IdResultado { get; set; }
+
+        //Inscricao
+        public int? IdInscricao { get; set; }
+
     }
 }
