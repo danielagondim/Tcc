@@ -81,7 +81,10 @@ namespace TCC.CursosOnline.Web.Controllers
             _repositorioResultado = new ResultadosRespositorio();
             _repositorioAtividade = new AtividadesRepositorio();
             _repositorioOpcao = new OpcoesRepositorio();
-         
+
+            TempData["id_atividade"] = id_atividade;
+            TempData["id_inscricao"] = id_inscricao;
+
 
             //Verifica se ja existe o registro em Resultados
             //Se não existir adiciona o registro
@@ -108,12 +111,15 @@ namespace TCC.CursosOnline.Web.Controllers
             //Retorna o id_resultado dessa atividade
             int id_resultado = _repositorioResultado.RetornaResultado(id_inscricao, id_atividade);
 
+            TempData["id_resultado"] = id_resultado;
+
             //Mostra a primeira pergunta
             AtividadeViewModel atividade = new AtividadeViewModel();
             atividade.Id = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Id_atividade;
             atividade.Nome_atividade = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Titulo;
             atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
             atividade.IdResultado = id_resultado;
+            atividade.IdInscricao = id_inscricao;
             if (atividade.ListaQuestoes.Count == 0)
             {
                 //Aqui finaliza a atividade e contabiliza a nota
@@ -129,27 +135,67 @@ namespace TCC.CursosOnline.Web.Controllers
            
         }
 
-        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public ActionResult RealizarAtividade(AtividadeViewModel model)
+        [Route("{OpcaoId}/{QuestaoId}")]
+        public JsonResult RealizarAtividade2(int OpcaoId, int QuestaoId)
         {
-            _respositorioResposta = new RespostasRepositorio();
-            var id_opcao_selecionada = model.ListaOpcoes;
-            var id_questao = model.ListaQuestoes[0].Id_questao;
-            var id_resultado = model.IdResultado;
-            var id_inscricao = model.IdInscricao;
-            var id_atividade = model.Id;
-            Resposta resposta = new Resposta();
-            resposta.Data = DateTime.Now;
-            resposta.Id_resultado = model.IdResultado;
-             
 
-            //Gravar as respostas
+            TempData.Keep("id_atividdade");
+            TempData.Keep("id_inscricao");
+            TempData.Keep("id_resultado");
 
+            try
+            {
+                _respositorioResposta = new RespostasRepositorio();
+                var id_opcao_selecionada = OpcaoId;
+                var id_questao = QuestaoId;
+                int id_resultado = Convert.ToInt32(TempData["id_resultado"]);
+                var id_inscricao = Convert.ToInt32(TempData["id_inscricao"]);
+                var id_atividade = Convert.ToInt32(TempData["id_atividade"]);
+                Resposta resposta = new Resposta();
+                resposta.Data = DateTime.Now;
+                resposta.Id_resultado = id_resultado;
+                resposta.Id_questao = id_questao;
+                resposta.Id_opcao = id_opcao_selecionada;
 
-            return RedirectToAction("RealizarAtividade", new { id_atividade = id_atividade, id_inscricao = id_inscricao } );
+                _respositorioResposta.Salvar(resposta);
+
+                return Json(new { sucesso = true });
+
+            }
+            catch (Exception)
+            {
+
+                return Json(new { sucesso = false });
+            }
+         
+            
+                //RedirectToAction("RealizarAtividade", new { id_atividade = id_atividade, id_inscricao = id_inscricao } );
         }
 
+
+        public ActionResult Pergunta()
+        {
+            _repositorio = new MeusCursosRepositorio();
+            _repositorioResultado = new ResultadosRespositorio();
+            _repositorioAtividade = new AtividadesRepositorio();
+            _repositorioOpcao = new OpcoesRepositorio();
+
+            int id_atividade  = Convert.ToInt32(TempData["id_atividade"]);
+            int id_resultado = Convert.ToInt32(TempData["id_resultado"]);
+            int id_inscricao = Convert.ToInt32(TempData["id_inscricao"]);
+
+            //Mostra a primeira pergunta
+            AtividadeViewModel atividade = new AtividadeViewModel();
+            atividade.Id = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Id_atividade;
+            atividade.Nome_atividade = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Titulo;
+            atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
+            atividade.IdResultado = id_resultado;
+            atividade.IdInscricao = id_inscricao;
+
+            return PartialView();
+        }
 
 
 

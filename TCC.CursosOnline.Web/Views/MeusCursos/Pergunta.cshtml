@@ -1,0 +1,21 @@
+﻿@model TCC.CursosOnline.Dominio.Entidades.AtividadeViewModel
+<ul style="list-style-type:decimal; ">
+    @foreach (var questao in Model.ListaQuestoes)
+    {
+        <input type="hidden" name="QuestaoId" value="@questao.Id_questao" />
+                                <li>
+                                    <h5>@questao.Enunciado</h5>
+                                    <ul style="list-style-type:upper-alpha">
+                                        @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                                        {
+                                            <li>
+                                                <input type="radio" class="radio radio-inline" name="OpcaoId" value="@opcao.Id_opcao">@opcao.Descricao
+
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                                <br />
+    }
+</ul>
+

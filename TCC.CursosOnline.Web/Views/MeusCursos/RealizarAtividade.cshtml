@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "";
-     Layout = null;
+    Layout = null;
 }
 
 @using (Html.BeginForm())
@@ -19,35 +19,60 @@
 
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">                   
-            
+                    <div class="form-horizontal">
+
                         @Html.HiddenFor(model => model.Id)
+                        <input type="hidden" name="idResultado" value="@Model.IdResultado" />
+                        <input type="hidden" name="IdInscricao" value="@Model.IdInscricao" />
 
-                        <ul style="list-style-type:decimal; ">
-                            @foreach (var questao in Model.ListaQuestoes)
-                            {
-                                <li>
-                                    <h5>@questao.Enunciado</h5>
-                                    <ul style="list-style-type:upper-alpha">
-                                        @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
-                                        {
-                                            <li>
-                                                <input type="radio" class="radio radio-inline" name="QuestoesId" value="@opcao.Id_questao">@opcao.Descricao
+                        <div id="divpergunta">
+                            <ul style="list-style-type:decimal; ">
+                                @foreach (var questao in Model.ListaQuestoes)
+                                {
+                                    <input type="hidden" name="QuestaoId" value="@questao.Id_questao" />
+                                    <li>
+                                        <h5>@questao.Enunciado</h5>
+                                        <ul style="list-style-type:upper-alpha">
+                                            @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                                            {
+                                                <li>
+                                                    <input type="radio" class="radio radio-inline" name="OpcaoId" value="@opcao.Id_opcao">@opcao.Descricao
 
-                                            </li>
-                                        }
-                                    </ul>
-                                </li>
-                                <br />
-                            }
-                        </ul>
-                    </div>                
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <br />
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" value="Salvar e Avançar >>" class="btn btn-info" />
+                <input type="button" id="btnSalvar" value="Salvar e Avançar >>" class="btn btn-info" />
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 }
+
+    <script type="text/javascript">
+        $(document).on("click", "#btnSalvar", function () {
+            $.ajax({
+                url: '/MeusCursos/RealizarAtividade2',
+                data: {
+                    OpcaoId: $("input[name=OpcaoId]:checked").val(),
+                    QuestaoId: $("#QuestaoId").val()
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.sucesso) {
+                        alert('ok');
+                    }
+                }
+            });
+        });
+    </script>

@@ -23,14 +23,17 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public List<Opcao> ListaOpcoes { get; set; }
 
 
-        //Respostas      
-        public int? OpcaoId { get; set; }
+        //Opção      
+        public int OpcaoId { get; set; }
+
+        //Questão
+        public int QuestaoId { get; set; }
 
         //Resultado
-        public int? IdResultado { get; set; }
+        public int IdResultado { get; set; }
 
         //Inscricao
-        public int? IdInscricao { get; set; }
+        public int IdInscricao { get; set; }
 
     }
 }
