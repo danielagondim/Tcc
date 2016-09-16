@@ -1,21 +1,31 @@
 ﻿@model TCC.CursosOnline.Dominio.Entidades.AtividadeViewModel
 <ul style="list-style-type:decimal; ">
-    @foreach (var questao in Model.ListaQuestoes)
+    @if (Model.ListaQuestoes.Count > 0)
     {
-        <input type="hidden" name="QuestaoId" value="@questao.Id_questao" />
-                                <li>
-                                    <h5>@questao.Enunciado</h5>
-                                    <ul style="list-style-type:upper-alpha">
-                                        @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
-                                        {
-                                            <li>
-                                                <input type="radio" class="radio radio-inline" name="OpcaoId" value="@opcao.Id_opcao">@opcao.Descricao
+        @foreach (var questao in Model.ListaQuestoes)
+        {
+            <input type="hidden" id="QuestaoId" name="QuestaoId" value="@questao.Id_questao" />
+            <li>
+                <h5>@questao.Enunciado</h5>
+                <ul style="list-style-type:upper-alpha">
+                    @foreach (var opcao in Model.ListaOpcoes.Where(p => p.Id_questao.Equals(questao.Id_questao)))
+                    {
+                        <li>
+                            <input type="radio" class="radio radio-inline" name="OpcaoId" value="@opcao.Id_opcao">@opcao.Descricao
 
-                                            </li>
-                                        }
-                                    </ul>
-                                </li>
+                        </li>
+                    }
+                </ul>
+            </li>
                                 <br />
+        }
     }
+    else {
+        <div>
+            <p>Não existe questões pendentes para responder.</p>
+            <input type="button" id="btnFechar" value="Fechar" class="btn btn-info" />
+        </div>
+    }
+   
 </ul>
 

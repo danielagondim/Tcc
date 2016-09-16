@@ -59,11 +59,11 @@ namespace TCC.CursosOnline.Web.Controllers
         }
 
         //Exibe o video em um modal
-        public ActionResult VerVideo (int id_video, int id_inscricao)
+        public ActionResult VerVideo(int id_video, int id_inscricao)
         {
             _repositorio = new MeusCursosRepositorio();
             _repositorioVideo = new VideosRepositorio();
-            
+
             var videoselecionado = new Video();
             videoselecionado = _repositorioVideo.RetornaVideoPorId(id_video);
 
@@ -72,11 +72,11 @@ namespace TCC.CursosOnline.Web.Controllers
             return PartialView(videoselecionado);
         }
 
-        
+
         //Realizar a atividade uma questão por vez
-        public ActionResult RealizarAtividade (int id_atividade, int id_inscricao)
+        public ActionResult RealizarAtividade(int id_atividade, int id_inscricao)
         {
-           
+
             _repositorio = new MeusCursosRepositorio();
             _repositorioResultado = new ResultadosRespositorio();
             _repositorioAtividade = new AtividadesRepositorio();
@@ -113,35 +113,30 @@ namespace TCC.CursosOnline.Web.Controllers
 
             TempData["id_resultado"] = id_resultado;
 
-            //Mostra a primeira pergunta
+
+            TempData.Keep("id_atividade");
+            TempData.Keep("id_inscricao");
+            TempData.Keep("id_resultado");
+
+            //Mostra a primeira pergunta disponível
             AtividadeViewModel atividade = new AtividadeViewModel();
             atividade.Id = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Id_atividade;
             atividade.Nome_atividade = _repositorioAtividade.RetornaAtividadesPorId(id_atividade).Titulo;
             atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
             atividade.IdResultado = id_resultado;
-            atividade.IdInscricao = id_inscricao;
-            if (atividade.ListaQuestoes.Count == 0)
-            {
-                //Aqui finaliza a atividade e contabiliza a nota
-                //Mensagem de atividade realizada
-                return PartialView();
+            atividade.IdInscricao = id_inscricao;            
+            atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
 
-            }else
-            {
-                //Mostra a proxima questão
-                atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
-                return PartialView(atividade);
-            }
-           
+            return PartialView(atividade);
+
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        [ValidateAntiForgeryToken]
+        [HttpPost]
         [Route("{OpcaoId}/{QuestaoId}")]
-        public JsonResult RealizarAtividade2(int OpcaoId, int QuestaoId)
+        public JsonResult ResponderQuestao(int OpcaoId, int QuestaoId)
         {
 
-            TempData.Keep("id_atividdade");
+            TempData.Keep("id_atividade");
             TempData.Keep("id_inscricao");
             TempData.Keep("id_resultado");
 
@@ -161,7 +156,7 @@ namespace TCC.CursosOnline.Web.Controllers
 
                 _respositorioResposta.Salvar(resposta);
 
-                return Json(new { sucesso = true });
+                return Json(new { success = true });
 
             }
             catch (Exception)
@@ -169,9 +164,9 @@ namespace TCC.CursosOnline.Web.Controllers
 
                 return Json(new { sucesso = false });
             }
-         
-            
-                //RedirectToAction("RealizarAtividade", new { id_atividade = id_atividade, id_inscricao = id_inscricao } );
+
+
+            //RedirectToAction("RealizarAtividade", new { id_atividade = id_atividade, id_inscricao = id_inscricao } );
         }
 
 
@@ -182,7 +177,11 @@ namespace TCC.CursosOnline.Web.Controllers
             _repositorioAtividade = new AtividadesRepositorio();
             _repositorioOpcao = new OpcoesRepositorio();
 
-            int id_atividade  = Convert.ToInt32(TempData["id_atividade"]);
+            TempData.Keep("id_atividade");
+            TempData.Keep("id_inscricao");
+            TempData.Keep("id_resultado");
+
+            int id_atividade = Convert.ToInt32(TempData["id_atividade"]);
             int id_resultado = Convert.ToInt32(TempData["id_resultado"]);
             int id_inscricao = Convert.ToInt32(TempData["id_inscricao"]);
 
@@ -193,8 +192,9 @@ namespace TCC.CursosOnline.Web.Controllers
             atividade.ListaQuestoes = _repositorio.BuscaQuestoesAtividade(id_atividade, id_resultado);
             atividade.IdResultado = id_resultado;
             atividade.IdInscricao = id_inscricao;
+            atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
 
-            return PartialView();
+            return PartialView(atividade);
         }
 
 

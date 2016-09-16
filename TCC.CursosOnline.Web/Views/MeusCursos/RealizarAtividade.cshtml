@@ -29,7 +29,7 @@
                             <ul style="list-style-type:decimal; ">
                                 @foreach (var questao in Model.ListaQuestoes)
                                 {
-                                    <input type="hidden" name="QuestaoId" value="@questao.Id_questao" />
+                                    <input type="hidden" id="QuestaoId" name="QuestaoId" value="@questao.Id_questao" />
                                     <li>
                                         <h5>@questao.Enunciado</h5>
                                         <ul style="list-style-type:upper-alpha">
@@ -60,19 +60,36 @@
 
     <script type="text/javascript">
         $(document).on("click", "#btnSalvar", function () {
+            var opcao = $("input[name=OpcaoId]:checked").val();
+            var questao = $("#QuestaoId").val();
+            alert(opcao + "-" + questao);
             $.ajax({
-                url: '/MeusCursos/RealizarAtividade2',
-                data: {
-                    OpcaoId: $("input[name=OpcaoId]:checked").val(),
-                    QuestaoId: $("#QuestaoId").val()
-                },
+                url: '/MeusCursos/ResponderQuestao',
+                data: { OpcaoId: opcao, QuestaoId: questao },
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
-                    if (data.sucesso) {
-                        alert('ok');
+                    if (data.success) {
+                        $.ajax({
+                            url: '/MeusCursos/Pergunta',
+                            type: 'get',
+                            dataType: 'html',
+                            success: function (data) {
+                                $("#divpergunta").empty();
+                                $("#divpergunta").html(data);
+                            }
+                        });
                     }
                 }
             });
+
+            //$.ajax({
+            //    url: '/MeusCursos/TestePost',
+            //    type: 'post',
+            //    dataType: 'json',
+            //    success: function (data) {
+            //            alert(data.sucess);
+            //    }
+            //});
         });
     </script>
