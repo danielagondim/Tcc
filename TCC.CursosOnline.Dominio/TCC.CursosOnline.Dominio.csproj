@@ -99,6 +99,7 @@
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\ForumRespostasRepositorio.cs" />
     <Compile Include="Repositorio\RespostasRepositorio.cs" />
     <Compile Include="Repositorio\ResutadosRespositorio.cs" />
     <Compile Include="Repositorio\InscricoesRespositorio.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Repositorio\EfDbContext.cs" />
     <Compile Include="Repositorio\MateriaisRepositorio.cs" />
     <Compile Include="Repositorio\AtividadesRepositorio.cs" />
+    <Compile Include="Repositorio\ForumTopicosRepositorio.cs" />
     <Compile Include="Repositorio\VideosRepositorio.cs" />
     <Compile Include="Repositorio\UnidadesRepositorio.cs" />
     <Compile Include="Repositorio\UsuariosRepositorio.cs" />

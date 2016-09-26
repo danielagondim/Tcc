@@ -2,7 +2,7 @@
 <ul style="list-style-type:decimal; ">
     @if (Model.ListaQuestoes.Count > 0)
     {
-        @foreach (var questao in Model.ListaQuestoes)
+        foreach (var questao in Model.ListaQuestoes)
         {
             <input type="hidden" id="QuestaoId" name="QuestaoId" value="@questao.Id_questao" />
             <li>
@@ -20,11 +20,14 @@
                                 <br />
         }
     }
-    else {
-        <div>
-            <p>Não existe questões pendentes para responder.</p>
-            <input type="button" id="btnFechar" value="Fechar" class="btn btn-info" />
-        </div>
+    else
+    {
+        <ul>
+            
+                <p>Não existe questões pendentes para responder.</p>              
+            
+
+        </ul>
     }
    
 </ul>

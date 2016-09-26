@@ -127,6 +127,19 @@ namespace TCC.CursosOnline.Web.Controllers
             atividade.IdInscricao = id_inscricao;            
             atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
 
+            //Já respondeu todas as questões então verifica se pode fechar a avaliação
+            if (atividade.ListaQuestoes.Count == 0)
+            {
+                List<Resultado> listaresultados1 = _repositorioResultado.ListaResultados(id_inscricao, id_atividade);
+                //Verifica se o resultado não foi ainda finalizado
+                if (listaresultados1[0].finalizado == false)
+                {
+                    //Finaliza o resultado
+                    _repositorio.FinalizaResultado(listaresultados1[0].Id_resultado);
+                }
+
+            }
+
             return PartialView(atividade);
 
         }
@@ -193,6 +206,19 @@ namespace TCC.CursosOnline.Web.Controllers
             atividade.IdResultado = id_resultado;
             atividade.IdInscricao = id_inscricao;
             atividade.ListaOpcoes = _repositorioOpcao.ListaOpcoesPorAtividade(id_atividade);
+
+            //Já respondeu todas as questões então verifica se pode fechar a avaliação
+            if (atividade.ListaQuestoes.Count == 0)
+            {
+                List<Resultado> listaresultados1 = _repositorioResultado.ListaResultados(id_inscricao, id_atividade);
+                //Verifica se o resultado não foi ainda finalizado
+                if (listaresultados1[0].finalizado == false)
+                {
+                    //Finaliza o resultado
+                    _repositorio.FinalizaResultado(listaresultados1[0].Id_resultado);
+                }
+
+            }
 
             return PartialView(atividade);
         }

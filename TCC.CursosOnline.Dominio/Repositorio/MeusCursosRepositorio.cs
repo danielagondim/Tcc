@@ -92,7 +92,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
             }
         }
-        
+
         //Busca os dados do curso
         public MeusCursosViewModel BuscaDadosDoCurso(string id_curso, string id_usuario)
         {
@@ -196,13 +196,13 @@ namespace TCC.CursosOnline.Dominio.Repositorio
 
         public List<Questao> BuscaQuestoesAtividade(int id_atividade, int id_resultado)
         {
-            var sql = "select " + 
+            var sql = "select " +
                       "     top 1 " +
                       "     Questoes.id_questao, " +
-	                  "     Questoes.enunciado,  " +
-	                  "     Questoes.ordem,      " +
-	                  "     Questoes.ativo,      " +
-	                  "     Questoes.id_atividade " +
+                      "     Questoes.enunciado,  " +
+                      "     Questoes.ordem,      " +
+                      "     Questoes.ativo,      " +
+                      "     Questoes.id_atividade " +
                       "from " +
                       "     Questoes " +
                       "where " +
@@ -244,6 +244,73 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                     return dados;
                 }
 
+            }
+        }
+
+        public void FinalizaResultado(int id_resultado)
+        {
+            //Calcula a nota do aluno
+            var sql = "select " +
+                      "     tabela.id_resultado, " +
+                      "     convert(decimal(10,2),sum(tabela.correta * valor))as total " +
+                      "from( " +
+                      "       select " +
+                      "         Respostas.id_resultado, " +
+                      "         Respostas.id_questao, " +
+                      "         Respostas.id_opcao, " +
+                      "         Opcoes.correta, " +
+                      "         (select 100 / count(1) from Respostas as resp where resp.id_resultado = id_resultado) as valor " +
+                      "       from " +
+                      "          Respostas " +
+                      "          inner join Opcoes on Opcoes.id_opcao = Respostas.id_opcao " +
+                      "       where " +
+                      "          id_resultado = " + id_resultado +
+                      "     ) as tabela " +
+                      "group by tabela.id_resultado ";
+
+            using (var conn = new SqlConnection(conexao))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+
+                    decimal? nota = null;
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
+                                nota = new decimal();
+                                nota = (decimal)reader["total"];
+
+                            }
+
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    if (nota != null)
+                    {
+                        //grava o resultado
+                        Resultado resultadoBanco = _context.Resultados.Find(id_resultado);
+                        if (resultadoBanco != null)
+                        {
+                            //Alterar
+                            resultadoBanco.finalizado = true;
+                            resultadoBanco.Data = DateTime.Now;
+                            resultadoBanco.nota = nota;
+
+                            _context.SaveChanges();
+                        }
+
+                    }
+                }
             }
         }
 

@@ -14,5 +14,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public int Id_usuario { get; set; }
         public string Descricao { get; set; }
         public DateTime Data { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
     }
 }

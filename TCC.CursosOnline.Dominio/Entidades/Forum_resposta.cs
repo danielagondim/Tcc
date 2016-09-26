@@ -18,5 +18,6 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public DateTime Data { get; set; }
 
         public virtual Forum_topico Forum_topico { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
