@@ -1,0 +1,34 @@
+﻿@model TCC.CursosOnline.Dominio.Entidades.EscolheCursoViewModel
+
+@{
+    ViewBag.Title = "Relatório";
+}
+
+<h2>Relatório</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        
+        <div class="form-group">
+            Filtrar Curso:
+            <div class="col-md-10">
+                @Html.DropDownList("Id", ViewData["listaCurso"] as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+

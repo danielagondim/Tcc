@@ -197,6 +197,11 @@
     <Content Include="Areas\Admin\Views\Opcoes\EditarOpcao.cshtml" />
     <Content Include="Areas\Admin\Views\Atividades\VerAtividade.cshtml" />
     <Content Include="Areas\Admin\Views\Atividades\VisualizarAtividade.cshtml" />
+    <Content Include="Areas\Admin\Views\DuvidasAdm\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DuvidasAdm\CadastrarTopico.cshtml" />
+    <Content Include="Areas\Admin\Views\DuvidasAdm\ListaRespostas.cshtml" />
+    <Content Include="Areas\Admin\Views\DuvidasAdm\CadastrarResposta.cshtml" />
+    <Content Include="Areas\Admin\Views\Relatorio\Index.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -210,6 +215,8 @@
     <Compile Include="Areas\Admin\Controllers\AtividadesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriasController.cs" />
     <Compile Include="Areas\Admin\Controllers\CursosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RelatorioController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DuvidasAdmController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MateriaisController.cs" />
     <Compile Include="Areas\Admin\Controllers\OpcoesController.cs" />
