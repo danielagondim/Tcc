@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.RelatorioViewModel>
+
+@{
+    ViewBag.Title = "Relatório";
+}
+
+<h2>Relatório</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCurso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Andamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NotaFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Finalizado)
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCurso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Andamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NotaFinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Finalizado)
+        </td>
+        
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
+
+</div>

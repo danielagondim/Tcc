@@ -15,17 +15,18 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        
+
         <div class="form-group">
-            Filtrar Curso:
+            <div class="col-md-2">
+                Filtrar Curso:
+            </div>
             <div class="col-md-10">
-                @Html.DropDownList("Id", ViewData["listaCurso"] as SelectList, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                @Html.DropDownList("Id", ViewData["listaCurso"] as SelectList, "Selecione", new { @class = "form-control" })               
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Gerar Relatório" class="btn btn-success" />
             </div>
         </div>
     </div>

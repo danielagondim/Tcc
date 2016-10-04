@@ -16,7 +16,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
         //Cabeçalho
         
         public string Usuario { get; set; }
-        public DateTime? data { get; set; }
+       
 
 
         //Campos do relatório

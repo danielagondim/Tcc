@@ -116,7 +116,6 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                             {
                                 p = new RelatorioViewModel();
                                 p.Id = (int)reader["id_inscricao"];
-                                p.data = (DateTime)reader["data_resultado"];
                                 p.NomeCurso = (string)reader["titulo_curso"];
                                 p.Usuario = (string)reader["nome"];
                                 p.Andamento = (string)reader["andamento"];
