@@ -13,16 +13,17 @@ namespace TCC.CursosOnline.Dominio.Entidades
       
         public int Id { get; set; }
 
-     
+        [Display(Name = "Curso")]
         public int Id_curso { get; set; }
 
         public bool Ativo { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Nome { get; set; }
 
         public string Arquivo { get; set; }
 
-       public HttpPostedFileBase ArquivoFile { get; set; }
+        public HttpPostedFileBase ArquivoFile { get; set; }
 
         public virtual Curso Curso { get; set; }
     }

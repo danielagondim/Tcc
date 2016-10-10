@@ -15,7 +15,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
         public bool Ativo { get; set; }
 
         [Display(Name ="Título do Curso")]
-        [Required(ErrorMessage = "Digite o título do curso.")]
+        [Required(ErrorMessage = "Campo Obrigatório.")]
         public string Titulo_curso { get; set; }
 
         [Display(Name = "Categoria")]

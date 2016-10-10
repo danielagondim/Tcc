@@ -14,14 +14,15 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public bool Ativo { get; set; }
 
-       
-        [Required(ErrorMessage = "Digite o título do curso.")]
+
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string Titulo { get; set; }
 
         [Display(Name = "Unidade")]
         public int Id_unidade { get; set; }
 
-        [Required(ErrorMessage = "Digite a ordem da atividade.")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        [Range(1, 99999)]
         public int Ordem { get; set; }
 
         public virtual Unidade Unidade { get; set; }

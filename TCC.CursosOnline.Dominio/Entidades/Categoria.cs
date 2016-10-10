@@ -14,7 +14,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public bool Ativo { get; set; }
 
-        [Required(ErrorMessage = "Digite a descrição da Categoria")]
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         public string Descricao { get; set; }
     }
 }

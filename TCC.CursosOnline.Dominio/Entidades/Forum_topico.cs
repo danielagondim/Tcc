@@ -12,6 +12,8 @@ namespace TCC.CursosOnline.Dominio.Entidades
         [Key]
         public int Id_topico { get; set; }
         public int Id_usuario { get; set; }
+
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         public string Descricao { get; set; }
         public DateTime Data { get; set; }
 

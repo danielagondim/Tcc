@@ -69,7 +69,7 @@
             @if (Model.ListaQuestoes.Count > 0)
             {
                 <div class="modal-footer">
-                    <input type="button" id="btnSalvar" value="Salvar e Avançar >>" class="btn btn-info"  data-dismiss="modal" />
+                    <input type="button" id="btnSalvar" value="Salvar e Avançar >>" class="btn btn-info"   />
                 </div>
 
             }
@@ -81,7 +81,7 @@
     $(document).on("click", "#btnSalvar", function () {
         var opcao = $("input[name=OpcaoId]:checked").val();
         var questao = $("#QuestaoId").val();
-        //alert(opcao + "-" + questao);
+        alert(opcao + "-" + questao);
         $.ajax({
             url: '/MeusCursos/ResponderQuestao',
             data: { OpcaoId: opcao, QuestaoId: questao },

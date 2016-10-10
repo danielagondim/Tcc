@@ -14,16 +14,16 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public bool Ativo { get; set; }
 
-        [Required(ErrorMessage = "Digite o CPF.")]
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         public string CPF { get; set; }
 
-        [Required(ErrorMessage = "Digite o Nome.")]
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Digite o Telefone.")]
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         public string Telefone { get; set; }
 
-        [Required(ErrorMessage = "Digite a senha.")]
+        [Required(ErrorMessage = "Campo Obrigatório!")]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
 
