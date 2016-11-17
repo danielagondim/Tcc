@@ -104,9 +104,9 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                      "    Inscricoes.id_inscricao, " +
                      "    Inscricoes.data, " +
                      "    Inscricoes.finalizado, " +
-                     "    Inscricoes.nota_final, " +
                      "    Inscricoes.data_resultado, " +
-                     "    (convert(varchar(5), (count(Andamentos.id_video) * 100) / count(Videos.id_video)) + '%') as andamento " +
+                     "    (convert(varchar(5), (count(Andamentos.id_video) * 100) / count(Videos.id_video)) + '%') as andamento, " +
+                     "    (select sum(resultados.nota) from resultados where id_inscricao =  Inscricoes.id_inscricao) as nota_final " +
                      " from " +
                      "     Inscricoes " +
                      "     inner join Cursos on Cursos.id_curso = Inscricoes.id_curso " +
@@ -119,6 +119,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                      "     and Cursos.id_curso = " + id_curso +
                      "     and Inscricoes.ativo = 1 " +
                      "     and Cursos.ativo = 1 " +
+                      "     and Unidades.ativo = 1 " +
+                      "     and Videos.ativo = 1 " +
                      " group by " +
                      "     cursos.id_curso, " +
                      "     cursos.titulo_curso," +
@@ -151,7 +153,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                                 p.descricao_categoria = (string)reader["descricao"];
                                 p.Dt_inscricao = (DateTime)reader["data"];
                                 p.finalizado = (int)reader["finalizado"];
-                                p.NotaFinal = (int)reader["nota_final"];
+                                p.NotaFinal = (decimal)reader["nota_final"];
                                 p.Andamento = (string)reader["andamento"];
 
                             }

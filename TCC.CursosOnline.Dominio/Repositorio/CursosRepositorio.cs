@@ -46,6 +46,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                     CursoBanco.Ativo = Curso.Ativo;
                     CursoBanco.Id_categoria = Curso.Id_categoria;
                     CursoBanco.Titulo_curso = Curso.Titulo_curso;
+                    CursoBanco.Instrutor = Curso.Instrutor;
+                    CursoBanco.Palavras_chave = Curso.Palavras_chave;
 
                 }
             }

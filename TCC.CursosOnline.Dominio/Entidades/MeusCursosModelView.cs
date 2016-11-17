@@ -30,7 +30,7 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public string Andamento { get; set; }
 
-        public int NotaFinal { get; set; }
+        public decimal NotaFinal { get; set; }
 
         public int finalizado { get; set; }
 

@@ -21,6 +21,10 @@ namespace TCC.CursosOnline.Dominio.Entidades
         [Display(Name = "Categoria")]
         public int Id_categoria { get; set; }
 
+        public string Instrutor { get; set; }
+
+        public string Palavras_chave { get; set; }
+
         public virtual Categoria Categoria { get; set; }
     }
 }

@@ -81,7 +81,7 @@
     $(document).on("click", "#btnSalvar", function () {
         var opcao = $("input[name=OpcaoId]:checked").val();
         var questao = $("#QuestaoId").val();
-        alert(opcao + "-" + questao);
+        
         $.ajax({
             url: '/MeusCursos/ResponderQuestao',
             data: { OpcaoId: opcao, QuestaoId: questao },
