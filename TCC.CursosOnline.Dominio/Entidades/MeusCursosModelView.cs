@@ -34,6 +34,8 @@ namespace TCC.CursosOnline.Dominio.Entidades
 
         public int finalizado { get; set; }
 
+        public decimal media { get; set; }
+
 
         public List<Video> ListaVideos { get; set; }
 

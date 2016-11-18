@@ -106,7 +106,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                      "    Inscricoes.finalizado, " +
                      "    Inscricoes.data_resultado, " +
                      "    (convert(varchar(5), (count(Andamentos.id_video) * 100) / count(Videos.id_video)) + '%') as andamento, " +
-                     "    (select sum(resultados.nota) from resultados where id_inscricao =  Inscricoes.id_inscricao) as nota_final " +
+                     "    isnull((select sum(resultados.nota) from resultados where id_inscricao =  Inscricoes.id_inscricao) , 0)  as nota_final " +
                      " from " +
                      "     Inscricoes " +
                      "     inner join Cursos on Cursos.id_curso = Inscricoes.id_curso " +
@@ -261,7 +261,7 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                       "         Respostas.id_questao, " +
                       "         Respostas.id_opcao, " +
                       "         Opcoes.correta, " +
-                      "         (select 100 / count(1) from Respostas as resp where resp.id_resultado = id_resultado) as valor " +
+                      "         (select 100 / count(1) from Respostas as resp where resp.id_resultado = " + id_resultado + ") as valor " +
                       "       from " +
                       "          Respostas " +
                       "          inner join Opcoes on Opcoes.id_opcao = Respostas.id_opcao " +
