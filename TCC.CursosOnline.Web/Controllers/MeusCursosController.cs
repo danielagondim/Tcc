@@ -53,7 +53,16 @@ namespace TCC.CursosOnline.Web.Controllers
             dadosCurso.ListaUnidade = _repositorioUnidade.ListaUnidadesAtivasPorCurso(dadosCurso.Id_curso);
             dadosCurso.ListaMaterial = _repositorioMaterial.ListaMateriaisPorCurso(dadosCurso.Id_curso);
 
-            dadosCurso.media = (dadosCurso.NotaFinal * 100) / (dadosCurso.ListaAtividades.Count *100);
+            try
+            {
+                dadosCurso.media = (dadosCurso.NotaFinal * 100) / (dadosCurso.ListaAtividades.Count * 100);
+            }
+            catch (Exception)
+            {
+
+                dadosCurso.media = 0;
+            }
+            
 
             return View(dadosCurso);
 

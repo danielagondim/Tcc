@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TCC.CursosOnline.Dominio.Entidades.MeusCursosViewModel>
+
+@{
+    ViewBag.Title = "Certificados";
+}
+
+
+<h2>Certificados</h2>
+<hr />
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            Curso
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Data Inscrição
+        </th>
+
+        <th>
+            Andamento
+        </th>
+        <th>
+            Nota Final
+        </th>
+
+        <th>Certificado</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo_curso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dt_inscricao)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Andamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotaFinal)
+            </td>
+            <td>
+                @Html.ActionLink("Certificado", "Certificado", new { id_curso = item.Id_curso }, new { @class = "btn btn-primary" })
+
+            </td>
+        </tr>
+    }
+
+</table>

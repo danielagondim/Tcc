@@ -316,5 +316,91 @@ namespace TCC.CursosOnline.Dominio.Repositorio
             }
         }
 
+
+        //Lista os cursos que o usuario esta inscrito
+        public List<MeusCursosViewModel> ListaMeusCursosAprovados(string id_usuario)
+        {
+            var sql = " select " +
+                      "    cursos.id_curso, " +
+                      "    cursos.titulo_curso, " +
+                      "    Categorias.id_categoria, " +
+                      "    Categorias.descricao, " +
+                      "    Inscricoes.id_inscricao, " +
+                      "    Inscricoes.data, " +
+                      "    Inscricoes.finalizado, " +
+                      "    Videos.ativo, " +
+                      "    Atividades.ativo, " +                      
+                      "    Inscricoes.data_resultado, " +
+                      "    (convert(varchar(5), (count(Andamentos.id_video) * 100) / count(Videos.id_video)) + '%') as andamento, " +
+                      "    (isnull((select sum(resultados.nota) from resultados where id_inscricao = Inscricoes.id_inscricao) , 0)) / (COUNT(distinct Atividades.id_atividade)) as nota_final " +
+                      " from " +
+                      "     Inscricoes " +
+                      "     inner join Cursos on Cursos.id_curso = Inscricoes.id_curso " +
+                      "     inner join Categorias on Categorias.id_categoria = Cursos.id_categoria " +
+                      "     inner join Unidades on Unidades.id_curso = Cursos.id_curso " +
+                      "     left join Atividades on Atividades.id_unidade = Unidades.id_unidade" +
+                      "     left join Videos on Videos.id_unidade = Unidades.id_unidade " +
+                      "     Left Join Andamentos on Andamentos.id_inscricao = Inscricoes.id_inscricao and Andamentos.id_video = Videos.id_video " +
+                      " where " +
+                      "     Inscricoes.id_usuario = " + id_usuario +
+                      "     and Inscricoes.ativo = 1 " +
+                      "     and Cursos.ativo = 1 " +
+                      "     and Unidades.ativo = 1 " +                      
+                      " group by " +
+                      "     cursos.id_curso, " +
+                      "     cursos.titulo_curso," +
+                      "     Categorias.id_categoria," +
+                      "     Categorias.descricao," +
+                      "     Inscricoes.id_inscricao," +
+                      "     Inscricoes.data," +
+                      "     Inscricoes.finalizado," +
+                      "     Inscricoes.nota_final," +
+                      "     Inscricoes.data_resultado, " +
+                      "      Videos.ativo, " +
+                      "    Atividades.ativo " +
+                      " having " +
+                      "     Videos.ativo = 1 " +
+                      "     and Atividades.ativo = 1 ";
+
+            using (var conn = new SqlConnection(conexao))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    List<MeusCursosViewModel> dados = new List<MeusCursosViewModel>();
+                    MeusCursosViewModel p = null;
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
+                                p = new MeusCursosViewModel();
+                                p.Id_inscricao = (int)reader["id_inscricao"];
+                                p.Id_curso = (int)reader["id_curso"];
+                                p.Titulo_curso = (string)reader["titulo_curso"];
+                                p.Id_categoria = (int)reader["id_categoria"];
+                                p.descricao_categoria = (string)reader["descricao"];
+                                p.Dt_inscricao = (DateTime)reader["data"];
+                                p.finalizado = (int)reader["finalizado"];
+                                p.NotaFinal = (decimal)reader["nota_final"];
+                                p.Andamento = (string)reader["andamento"];
+                                dados.Add(p);
+                            }
+
+                            reader.Close();
+                            conn.Close();
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return dados;
+                }
+
+            }
+        }
+
     }
 }

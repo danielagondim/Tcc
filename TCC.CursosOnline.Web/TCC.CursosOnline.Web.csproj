@@ -227,6 +227,7 @@
     <Compile Include="Areas\Admin\Controllers\VideosController.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\CertificadoController.cs" />
     <Compile Include="Controllers\DuvidasController.cs" />
     <Compile Include="Controllers\InscricoesController.cs" />
     <Compile Include="Controllers\MeusCursosController.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Views\Duvidas\CadastrarTopico.cshtml" />
     <Content Include="Views\Duvidas\ListaRespostas.cshtml" />
     <Content Include="Views\Duvidas\CadastrarResposta.cshtml" />
+    <Content Include="Views\Certificado\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
