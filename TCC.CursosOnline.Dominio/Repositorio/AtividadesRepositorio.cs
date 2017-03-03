@@ -9,7 +9,7 @@ using System.Web.Configuration;
 using TCC.CursosOnline.Dominio.Entidades;
 
 namespace TCC.CursosOnline.Dominio.Repositorio
-{ /*checkin*/
+{ 
     public class AtividadesRepositorio
     {
         private readonly EfDbContext _context = new EfDbContext();
