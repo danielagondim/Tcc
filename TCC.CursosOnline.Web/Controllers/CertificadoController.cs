@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TCC.CursosOnline.Dominio.Entidades;
 using TCC.CursosOnline.Dominio.Repositorio;
+using RazorPDF;
 
 namespace TCC.CursosOnline.Web.Controllers
 {
@@ -25,6 +26,28 @@ namespace TCC.CursosOnline.Web.Controllers
             var listaCursosAprovados = _repositorio.ListaMeusCursosAprovados(principal.Identity.Name.ToString());
 
             return View(listaCursosAprovados);
+        }
+
+
+        public ActionResult Certificado(int id_curso)
+        {
+            _repositorio = new MeusCursosRepositorio();
+           
+
+            IPrincipal principal = HttpContext.User;
+
+            var dadosCurso = new MeusCursosViewModel();
+
+            dadosCurso = _repositorio.BuscaDadosDoCurso(id_curso.ToString(), principal.Identity.Name.ToString());
+
+            var pdfResult = new PdfResult(dadosCurso, "PDF");
+
+            pdfResult.ViewBag.title = "teste";
+          
+
+            return pdfResult;
+
+
         }
     }
 }

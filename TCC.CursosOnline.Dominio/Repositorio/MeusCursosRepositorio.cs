@@ -360,7 +360,8 @@ namespace TCC.CursosOnline.Dominio.Repositorio
                       "    Atividades.ativo " +
                       " having " +
                       "     Videos.ativo = 1 " +
-                      "     and Atividades.ativo = 1 ";
+                      "     and Atividades.ativo = 1 " +
+                      "     and (isnull((select sum(resultados.nota) from resultados where id_inscricao = Inscricoes.id_inscricao) , 0)) / (COUNT(distinct Atividades.id_atividade)) > 70 ";
 
             using (var conn = new SqlConnection(conexao))
             {
